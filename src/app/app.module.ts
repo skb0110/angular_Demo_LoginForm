@@ -25,6 +25,7 @@ import { MgrDashboardComponent } from './component/mgr-dashboard/mgr-dashboard.c
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule
+    
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

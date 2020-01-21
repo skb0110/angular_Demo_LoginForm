@@ -7,7 +7,7 @@ import { User } from '../../model/user';
 import { AuthenticationService } from '../../service/authentication.service';
 import{UserService} from '../../service/user.service';
 import { Leads } from '../../model/leads';
-import{JwtInterceptor} from '../../helpers/jwt.interceptor';
+//import{JwtInterceptor} from '../../helpers/jwt.interceptor';
 
 @Component({
 
@@ -17,15 +17,13 @@ import{JwtInterceptor} from '../../helpers/jwt.interceptor';
 export class DashboardComponent implements OnInit {
   currentUser: User;
   currentUserSubscription: Subscription;
-
- 
-
   users: User[] = [];
   lead:Leads[]=[];
 
   constructor(
       private authenticationService: AuthenticationService,
-      private userService: UserService
+      private userService: UserService,
+    //   private jwt:JwtInterceptor
 
 
 
@@ -45,10 +43,10 @@ export class DashboardComponent implements OnInit {
       // unsubscribe to ensure no memory leaks
       this.currentUserSubscription.unsubscribe();
   }
- private loadAllUsers() {
-        this.userService.getLeadNames().pipe(first()).subscribe(Leads => {
-            this.lead = Leads;
-console.log(Leads);
+     private loadAllUsers() {
+        this.userService.getLeadNames().pipe(first()).subscribe(leads => {
+            
+        console.log(Leads);
         });
     }
 }
