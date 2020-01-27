@@ -11,7 +11,7 @@ import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { MgrDashboardComponent } from './component/mgr-dashboard/mgr-dashboard.component';
-
+ 
 @NgModule({
   declarations: [
     AppComponent,

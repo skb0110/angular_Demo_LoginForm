@@ -1,1 +1,124 @@
-<p>mgr-dashboard works!</p>
+
+<!-- <h1>Hi {{currentUser.firstName}}!</h1> -->
+<!-- <h1>Hi {{currentUser.id}}!</h1> -->
+<p></p>
+<h3>Welcome {{ currentUser.roles.roleNames }} {{ currentUser.username }}  </h3>
+
+<form [formGroup]="oppoSuitsForm" (ngSubmit)="onSubmit()">
+<h6>Filter</h6>
+<div>
+<select formControlName="selectedleadName">
+    <option disabled>Select Lead Name </option>
+    <option>Lead Name</option>
+    <option *ngFor="let suit of leadName">{{suit}}</option>
+   
+  </select>
+
+</div>
+    <select formControlName="year">
+      <option disabled>Select  Year</option>
+      <option>year</option>
+      <option *ngFor="let suit of oppoSuits">{{suit}}</option>
+    </select>
+
+    <select formControlName="month">
+        <option disabled>Select Month</option>
+        <option>month</option>
+        <option *ngFor="let suit of month">{{suit}}</option>
+      </select>
+  
+    <button>Submit</button>
+    <br>
+  </form>
+  <br>
+  <br>
+<table>
+    <thead>
+      <tr>
+        <th>Role</th>
+        <th>Technology</th>
+        <th>Level</th>
+        <th>Location</th>
+        <th>Name</th>
+        <th>Person Responsible for updating data</th>
+        <th>Emp. Code</th>
+        <th>WFH</th>
+        <th>wfhDates</th>
+        <th>leaveDates</th>
+        <th>leaveCount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employeeInformationDto of employeeInformationDtos ; let id = index" >
+        <td>{{ employeeInformationDto.designationRole }}</td>
+        <td>{{ employeeInformationDto.level }}</td>
+        <td>{{ employeeInformationDto.level }}</td>
+        <td>{{ employeeInformationDto.location }}</td>
+        <td>{{ employeeInformationDto.firstName }} {{ employeeInformationDto.lastName }}</td>
+        <td>{{ employeeInformationDto.lead }}</td>
+        <td>{{ employeeInformationDto.employee_Id }}</td>
+        <td>{{ employeeInformationDto.employee_details_leave_and_wfhDto.workingDayCount }}</td>
+        <!-- <td>{{ employeeInformationDto.leavesInformations.wfhDates }}</td> -->
+    
+        <!-- <td>           
+           <div style="overflow: auto; max-height: 200px;">
+                
+                
+                    <input type="date"  [(ngModel)]="workfromehome"
+                    (click)="addWorkfromehomes(id,event)" />
+                   
+                     <span (keyup)="changeValue(id, 'name', $event)" (blur)="updateList(id, 'name', $event)" contenteditable="true">{{person.name}}</span> 
+
+
+                <div *ngFor="let da of employeeInformationDto.employee_details_leave_and_wfhDto.wfhDates ">
+                  <span (keyup)="changeValue(id, 'name', $event)" (blur)="updateList(id, 'name', $event)" contenteditable="true">{{da}}</span>
+
+                     {{da}} <span id='close'
+                        ng-click="workfromehomeremove($parent.$index,$index)">x</span>
+                    <hr>
+                </div>
+            </div>
+        </td> -->
+
+        <td>
+          <div style="overflow: auto; max-height: 200px;">
+
+
+              <div *ngFor="let da of employeeInformationDto.employee_details_leave_and_wfhDto.wfhDates">
+                   {{da}}
+                  <hr>
+              </div>
+          </div>
+      </td>
+
+
+
+        <!-- <td>{{  employeeInformationDto.leavesInformations.leaveDates }}</td> -->
+        <!-- <td><div style="overflow: auto; max-height: 200px;">
+							<p>
+								<input type="date" id="leaveDate" ng-model="leavefromehome"
+									ng-change="addleavefromehomes($index)">
+							</p>
+
+
+							<div *ngFor="let leave of employeeInformationDto.employee_details_leave_and_wfhDto.leaveDates">
+
+								 {{leave}} <span id='close'
+									ng-click="leaveromehomeremove($parent.$index,$index)">x</span>
+								<hr>
+							</div>
+                        </div>
+         </td> -->
+
+         <td><div style="overflow: auto; max-height: 200px;">
+          <div *ngFor="let leave of employeeInformationDto.employee_details_leave_and_wfhDto.leaveDates">
+             {{leave}} 
+            <hr>
+          </div>
+                    </div>
+     </td>
+        <td>{{  employeeInformationDto.employee_details_leave_and_wfhDto.leaveCount }}</td>
+        
+      </tr>
+    </tbody>
+</table>

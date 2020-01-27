@@ -1,12 +1,59 @@
 <!-- <h1>Hi {{currentUser.firstName}}!</h1> -->
 <!-- <h1>Hi {{currentUser.id}}!</h1> -->
 <p></p>
-<h3>Welcome {{currentUser.empId}}  </h3>
-<h3>You logged in as :{{currentUser.roles.roleNames}}</h3>
-<ul>
-    
-    <li *ngFor="let user of users">
-        {{user.username}} ({{user.firstName}} {{user.lastName}})
-        - <a (click)="deleteUser(user.id)" class="text-danger">Delete</a>
-    </li>
-</ul>
+<h3>Welcome {{ employeeInformationDto.firstName }} {{ employeeInformationDto.lastName }}  </h3>
+
+
+
+
+<table>
+    <thead>
+      <tr>
+        <th>Role</th>
+        <th>Technology</th>
+        <th>Level</th>
+        <th>Location</th>
+        <th>Name</th>
+        <th>Person Responsible for updating data</th>
+        <th>Emp. Code</th>
+        <th>WFH</th>
+        <th>wfhDates</th>
+        <th>leaveDates</th>
+        <th>leaveCount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr >
+        <td>{{ employeeInformationDto.designationRole }}</td>
+        <td>{{ employeeInformationDto.level }}</td>
+        <td>{{ employeeInformationDto.level }}</td>
+        <td>{{ employeeInformationDto.location }}</td>
+        <td>{{ employeeInformationDto.firstName }} {{ employeeInformationDto.lastName }}</td>
+        <td>{{ employeeInformationDto.lead }}</td>
+        <td>{{ employeeInformationDto.employee_Id }}</td>
+        <td>{{ employeeInformationDto.employee_details_leave_and_wfhDto.workingDayCount }}</td>
+        <!-- <td>{{ employeeInformationDto.leavesInformations.wfhDates }}</td> -->
+        <td>
+            <div style="overflow: auto; max-height: 200px;">
+
+
+                <div *ngFor="let da of employeeInformationDto.employee_details_leave_and_wfhDto.wfhDates">
+                     {{da}}
+                    <hr>
+                </div>
+            </div>
+        </td>
+        <!-- <td>{{  employeeInformationDto.leavesInformations.leaveDates }}</td> -->
+        <td><div style="overflow: auto; max-height: 200px;">
+							<div *ngFor="let leave of employeeInformationDto.employee_details_leave_and_wfhDto.leaveDates">
+								 {{leave}} 
+								<hr>
+							</div>
+                        </div>
+         </td>
+        <td>{{  employeeInformationDto.employee_details_leave_and_wfhDto.leaveCount }}</td>
+        
+
+      </tr>
+    </tbody>
+</table>

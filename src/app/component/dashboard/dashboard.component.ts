@@ -7,6 +7,8 @@ import { User } from '../../model/user';
 import { AuthenticationService } from '../../service/authentication.service';
 import{UserService} from '../../service/user.service';
 import { Leads } from '../../model/leads';
+import { EmployeeInformationDto } from 'src/app/model/employeeInformationDto';
+import { Employee_details_leave_and_wfhDto } from 'src/app/model/employee_details_leave_and_wfhDto';
 //import{JwtInterceptor} from '../../helpers/jwt.interceptor';
 
 @Component({
@@ -18,7 +20,9 @@ export class DashboardComponent implements OnInit {
   currentUser: User;
   currentUserSubscription: Subscription;
   users: User[] = [];
-  lead:Leads[]=[];
+  leadName:Leads;
+  employeeInformationDto:EmployeeInformationDto;
+ 
 
   constructor(
       private authenticationService: AuthenticationService,
@@ -37,17 +41,30 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
       this.loadAllUsers();
-  }
+      this.getEmployeeWithLeaveInformation();
+
+      console.log(this.leadName);
+
+    }
 
   ngOnDestroy() {
       // unsubscribe to ensure no memory leaks
       this.currentUserSubscription.unsubscribe();
   }
      private loadAllUsers() {
-        this.userService.getLeadNames().pipe(first()).subscribe(leads => {
-            
-        console.log(Leads);
+        this.userService.getLeadNames().pipe(first()).subscribe(Leads => {
+            this.leadName=Leads;
+        console.log(this.leadName);
         });
+    }
+
+    private getEmployeeWithLeaveInformation()
+    {
+      this.userService.getEmployeeWithLeaveInformation(Number(this.currentUser.username),1,2020).pipe(first()).subscribe(Emp=>{
+        this.employeeInformationDto=Emp;
+
+        console.log(this.employeeInformationDto);
+      })
     }
 }
   

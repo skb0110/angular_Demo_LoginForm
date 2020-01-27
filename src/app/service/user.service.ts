@@ -8,6 +8,8 @@ import { Subscription } from 'rxjs';
 
 import { User } from '../model/user';
 import{Leads} from'../model/leads';
+import { EmployeeInformationDto } from '../model/employeeInformationDto';
+import { Employee_details_leave_and_wfhDto } from '../model/employee_details_leave_and_wfhDto';
 
 
 @Injectable({ providedIn: 'root' })
@@ -32,11 +34,6 @@ export class UserService {
 
     getLeadNames() {
         
-        //  let headers = new HttpHeaders({
-        //      'Content-Type': 'application/json',
-        //      'Authorization':'Bearer '+ this.currentUser.token });
-        //  let options = { headers: headers };
-//console.log(options);
         return this.http.get<Leads>(`http://localhost:8082/employee/getleadNames`);
     }
 
@@ -48,4 +45,13 @@ export class UserService {
         return this.http.delete(`/users/${id}`);
     }
 
+    getEmployeeWithLeaveInformation(eId:number,month:number,year:number)
+    {
+        return this.http.get<EmployeeInformationDto>(`http://localhost:8082/employee/getEmployeeWithLeaveInformation/${eId}/${month}/${year}`);
+    }
+
+    getAllEmployeeWithLeaveInformation(month:number,year:number)
+    {
+        return this.http.get<EmployeeInformationDto []>(`http://localhost:8082/employee/getAllEmployeeWithLeaveInformation/${month}/${year}`);
+    }
 }
