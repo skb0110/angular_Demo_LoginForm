@@ -8,6 +8,7 @@ import { AuthenticationService } from '../../service/authentication.service';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Leads } from 'src/app/model/leads';
 import { identifierModuleUrl } from '@angular/compiler';
+import { saveAs } from 'file-saver';
 
 declare var jquery:any;
 declare var $ :any;
@@ -96,4 +97,21 @@ public addWorkfromehomes(index,e) {
 }
 
 
+downloadFile() {
+  // check something
+  // ...
+  this.userService.download(this.employeeInformationDtos).subscribe(data => {
+    console.log(data);
+    const blob = new Blob([data], { type : 'application/vnd.ms.excel' });
+             const file = new File([blob], 'IcannExcelReport' + '.xlsx', { type: 'application/vnd.ms.excel' });
+             saveAs(file);
+
+
+});
+ 
 }
+
+}
+
+
+

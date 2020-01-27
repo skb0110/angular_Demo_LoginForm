@@ -54,4 +54,10 @@ export class UserService {
     {
         return this.http.get<EmployeeInformationDto []>(`http://localhost:8082/employee/getAllEmployeeWithLeaveInformation/${month}/${year}`);
     }
+
+    download(employeeInformationDto:EmployeeInformationDto []) {
+     
+        return this.http.post('http://localhost:8082/download', employeeInformationDto, {responseType: 'blob' });
+    }
+
 }
