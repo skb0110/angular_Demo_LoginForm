@@ -9,6 +9,7 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Leads } from 'src/app/model/leads';
 import { identifierModuleUrl } from '@angular/compiler';
 import { saveAs } from 'file-saver';
+import { ActivatedRoute, Router } from '@angular/router';
 
 declare var jquery:any;
 declare var $ :any;
@@ -29,6 +30,8 @@ dates:Date[];
   workfromehome;
   constructor(
     public fb: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
 
     private authenticationService: AuthenticationService,
       private userService: UserService,
@@ -45,7 +48,7 @@ dates:Date[];
 oppoSuitsForm = this.fb.group({
   year: [''],
 month:[''],
-selectedleadName:['']
+selectedleadName:[]
 
 
 })
@@ -56,10 +59,20 @@ checkoutForm = this.fb.group({
 
 });
 
-onSubmit() {
+ClearFilter(){
+  console.log("mg")
+  this.getAllEmployeeWithLeaveInformation(1,2020);
+}
 
-  this.getAllEmployeeWithLeaveInformation(this.oppoSuitsForm.value.month,this.oppoSuitsForm.value.year);
- // alert(JSON.stringify(this.oppoSuitsForm.value))
+  onSubmit() {
+  console.log(this.oppoSuitsForm.value.selectedleadName)
+
+
+  console.log(this.oppoSuitsForm.value.selectedleadName)
+  this.getAllEmployeeWithLeaveInformationbylead(this.oppoSuitsForm.value.selectedleadName,this.oppoSuitsForm.value.month,this.oppoSuitsForm.value.year);
+//  this.getAllEmployeeWithLeaveInformation(this.oppoSuitsForm.value.month,this.oppoSuitsForm.value.year);
+
+  // alert(JSON.stringify(this.oppoSuitsForm.value))
 
 
 }
@@ -77,6 +90,7 @@ public addWorkfromehomes(index,e) {
   ngOnInit() {
   this.getLeadNames();
     this.getAllEmployeeWithLeaveInformation(1,2020);
+
   }
 
 
@@ -89,6 +103,14 @@ public addWorkfromehomes(index,e) {
     })
   }
 
+  private getAllEmployeeWithLeaveInformationbylead(lead:string ,month:number,year:number )
+  {
+    this.userService.getAllEmployeeWithLeaveInformationByLead(lead,month,year).pipe(first()).subscribe(Emp=>{
+      this.employeeInformationDtos=Emp;
+
+      console.log(this.employeeInformationDtos);
+    })
+  }
   private getLeadNames() {
     this.userService.getLeadNames().pipe(first()).subscribe(Leads => {
         this.leadName=Leads;

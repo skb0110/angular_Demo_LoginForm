@@ -35,7 +35,13 @@ export class AuthenticationService {
 
     logout() {
         // remove user from local storage to log user out
-        localStorage.removeItem('currentUser');
+//        this.http.post<any>('http://localhost:8082/logout',this.currentUser).pipe(map(user=>{
+  //      localStorage.removeItem('currentUser');
+    //    this.currentUserSubject.next(null);
+      //  console.log('logout');
+       //}));
+
+       localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);
     }
 }
