@@ -11,13 +11,18 @@ import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { MgrDashboardComponent } from './component/mgr-dashboard/mgr-dashboard.component';
+import { UserprofileComponent } from './component/userprofile/userprofile.component';
+import { HolidaysCalendarComponent } from './holidays-calendar/holidays-calendar.component';
  
 @NgModule({
   declarations: [
+
     AppComponent,
     LoginComponent,
     DashboardComponent,
-    MgrDashboardComponent
+    MgrDashboardComponent,
+    UserprofileComponent,
+    HolidaysCalendarComponent
   ],
   imports: [
     BrowserModule,

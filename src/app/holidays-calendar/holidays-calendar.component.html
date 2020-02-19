@@ -1,0 +1,37 @@
+<p>holidays-calendar works!</p>
+
+
+<section class="row" *ngIf="isManager">
+	<div class="col-md-3">
+		<input type="text" placeholder="holidayName" [(ngModel)]="holid.holidayName" >
+	</div>
+	<div class="col-md-3">
+		<input type="date" placeholder="2020/01/01" [(ngModel)]="holid.holiday_date" >
+	</div>
+	<div class="col-md-6">
+		<button type="submit" class="btn btn-primary btn-round" (click)="submit()">add
+			Holidays</button>
+	</div>
+</section>
+<br>
+<section class="col-md-8">
+
+	<table id="customers">
+		<thead>
+			<tr>
+				<th>Sr.no</th>
+				<th>Holiday Name</th>
+				<th>Date</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let holi of holidays ; let id = index" >
+				<td>{{id}}</td>
+				<td>{{holi.holidayName}}</td>
+				<td>{{holi.holiday_date}}</td>
+			</tr>
+
+		</tbody>
+	</table>
+</section>

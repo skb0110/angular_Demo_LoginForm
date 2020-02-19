@@ -61,7 +61,7 @@ checkoutForm = this.fb.group({
 
 ClearFilter(){
   console.log("mg")
-  this.getAllEmployeeWithLeaveInformation(1,2020);
+  this.getAllEmployeeWithLeaveInformation(12,2019);
 }
 
   onSubmit() {
@@ -78,11 +78,12 @@ ClearFilter(){
 }
 
 
-public addWorkfromehomes(index,e) {
+public addWorkfromehomes(index,event) {
   
-//    console.log(index,this.workfromehome,e.target.value);
-    // this.employeeInformationDtos[index].employee_details_leave_and_wfhDto.wfhDates.push();
-      //this.availableTargets.splice(index, 1);
+    console.log(index,this.workfromehome);
+     //this.employeeInformationDtos[index].wfhDates.push();
+     // this.availableTargets.splice(index, 1);
+     console.log("workfrome home"+index,+event.value)
 }
 
 
@@ -133,7 +134,21 @@ downloadFile() {
  
 }
 
+updateData(){
+  this.userService.updateEmployee(this.employeeInformationDtos).subscribe(data =>{
+
+  });
+}
+downloadFile1() {
+  // check something
+  // ...
+  this.userService.download1(this.employeeInformationDtos).subscribe(data => {
+    console.log(data);
+    const blob = new Blob([data], { type : 'application/vnd.ms.excel' });
+             const file = new File([blob], 'IcannExcelReport' + '.xlsx', { type: 'application/vnd.ms.excel' });
+             saveAs(file);
+});
+ 
 }
 
-
-
+}

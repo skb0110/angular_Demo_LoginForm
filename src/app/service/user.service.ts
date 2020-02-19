@@ -10,6 +10,7 @@ import { User } from '../model/user';
 import{Leads} from'../model/leads';
 import { EmployeeInformationDto } from '../model/employeeInformationDto';
 import { Employee_details_leave_and_wfhDto } from '../model/employee_details_leave_and_wfhDto';
+import { Holidays } from '../model/holidays';
 
 
 @Injectable({ providedIn: 'root' })
@@ -49,6 +50,10 @@ export class UserService {
     {
         return this.http.get<EmployeeInformationDto>(`http://localhost:8082/employee/getEmployeeWithLeaveInformation/${eId}/${month}/${year}`);
     }
+    
+    getemployeeInformation(eId:number){
+        return this.http.get<EmployeeInformationDto>(`http://localhost:8082/employee/getEmployee/${eId}`);
+    }
 
     getAllEmployeeWithLeaveInformation(month:number,year:number)
     {
@@ -64,5 +69,25 @@ export class UserService {
      
         return this.http.post('http://localhost:8082/download', employeeInformationDto, {responseType: 'blob' });
     }
+    download1(employeeInformationDto:EmployeeInformationDto []) {
+     
+        return this.http.post('http://localhost:8082/download1', employeeInformationDto, {responseType: 'blob' });
+    }
+
+    updateEmployee(employeeInformationDto:EmployeeInformationDto []) {     
+   
+        return this.http.post('http://localhost:8082/employee/updateAllEmployee', employeeInformationDto);
+    }
+    
+    addemployee(employeeInformationDto:EmployeeInformationDto)
+    {
+        return this.http.post('http://localhost:8082/employee/addEmployee', employeeInformationDto);
+    }
+
+    getHolidays()
+    {
+        return this.http.get<Holidays []>('http://localhost:8082/getHolidays');
+    }
+
 
 }
