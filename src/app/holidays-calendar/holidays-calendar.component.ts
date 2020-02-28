@@ -15,8 +15,8 @@ import { Holidays } from '../model/holidays';
 export class HolidaysCalendarComponent implements OnInit {
   currentUser: User;
   holidays: Holidays[] = [];
-  holid: any;
-
+  holiday:Holidays;
+ 
   constructor(
     private router: Router,
     private userService: UserService,
@@ -26,10 +26,12 @@ export class HolidaysCalendarComponent implements OnInit {
   }
   ngOnInit() {
     this.getHolidays();
+    this.holiday=new Holidays;
   }
 
   get isManager() {
     return this.currentUser && (this.currentUser.roles.roleNames === Role.Manager || this.currentUser.roles.roleNames === Role.Lead);
+    this.holidays;
   }
 
 
@@ -40,10 +42,10 @@ export class HolidaysCalendarComponent implements OnInit {
       console.log(this.holidays);
     })
   }
-public  submit(){
-console.log(+this.holid.holidayName,this.holid.holiday_date);
+  public submit() {
+   console.log(+this.holiday.holidayName, this.holiday.holiday_date);
 
- 
-}
+
+  }
 
 }

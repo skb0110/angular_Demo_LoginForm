@@ -12,21 +12,21 @@
 						<div class="col-md-5 pr-1">
 							<div class="form-group">
 								<label>employee_Id</label>
-								 <input type="number" class="form-control" disabled="number"
-									placeholder="employee_Id" value="{{emp.employee_Id}}">
+								 <input type="number" class="form-control" disabled
+									 [(ngModel)]="emp.employee_Id" value="{{emp.employee_Id}}">
 							</div>
 						</div>
 						<div class="col-md-3 px-1">
 							<div class="form-group">
 								<label>contact_number</label> <input type="text" class="form-control"
-									placeholder="contact_number"  value="{{emp.contact_number}}">
+									placeholder="contact_number" [(ngModel)]="emp.contact_number" value="{{emp.contact_number}}">
 							</div>
 							<!-- [(ngModel)]="emp.contact_number" -->
 						</div>
 						<div class="col-md-4 pl-1">
 							<div class="form-group">
 								<label for="exampleInputEmail1">Email address</label>
-								<input type="email" class="form-control" placeholder="Email" value="{{emp.email}}">
+								<input type="email" class="form-control" placeholder="Email" [(ngModel)]="emp.email" value="{{emp.email}}">
 							</div>
 						</div>
 					</div>
@@ -34,13 +34,13 @@
 						<div class="col-md-6 pr-1">
 							<div class="form-group">
 								<label>First Name</label> <input type="text" class="form-control" placeholder="Company"
-									value="{{emp.firstName}}">
+								[(ngModel)]="emp.firstName"	value="{{emp.firstName}}">
 							</div>
 						</div>
 						<div class="col-md-6 pl-1">
 							<div class="form-group">
 								<label>Last Name</label> <input type="text" class="form-control" placeholder="Last Name"
-									value="{{emp.lastName}}">
+								[(ngModel)]="emp.lastName"	value="{{emp.lastName}}">
 							</div>
 						</div>
 					</div>
@@ -48,7 +48,7 @@
 						<div class="col-md-12">
 							<div class="form-group">
 								<label>location</label> <input type="text" class="form-control" placeholder="location"
-									value="{{emp.location}}">
+								[(ngModel)]="emp.location"	value="{{emp.location}}">
 							</div>
 						</div>
 					</div>
@@ -56,19 +56,19 @@
 						<div class="col-md-4 pr-1">
 							<div class="form-group">
 								<label>designationRole</label> <input type="text" class="form-control"
-									placeholder="designationRole" value="{{emp.designationRole}}">
+									placeholder="designationRole" [(ngModel)]="emp.designationRole" value="{{emp.designationRole}}">
 							</div>
 						</div>
 						<div class="col-md-4 px-1">
 							<div class="form-group">
 								<label>date_of_join_in_project</label> <input type="date" class="form-control"
-									placeholder="date_of_join_in_project" value="{{emp.date_of_join_in_project}}">
+									placeholder="date_of_join_in_project" [(ngModel)]="emp.date_of_join_in_project" value="{{emp.date_of_join_in_project}}">
 							</div>
 						</div>
 						<div class="col-md-4 pl-1">
 							<div class="form-group">
 								<label>date_of_release_in_project</label> <input type="date" class="form-control"
-									placeholder="date_of_release_in_project" value="{{emp.date_of_release_in_project}}">
+									placeholder="date_of_release_in_project" [(ngModel)]="emp.date_of_release_in_project" value="{{emp.date_of_release_in_project}}">
 							</div>
 						</div>
 					</div>
@@ -76,13 +76,13 @@
 						<div class="col-md-12">
 							<div class="form-group">
 								<label>level</label> <input type="number" class="form-control" placeholder="level"
-									value="{{emp.level}}">
+								[(ngModel)]="emp.level"	value="{{emp.level}}">
 							</div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="update ml-auto mr-auto">
-							<button type="submit" class="btn btn-primary btn-round">Update
+							<button type="submit" class="btn btn-primary btn-round" (click)="onSubmit()">Update
 								Profile</button>
 						</div>
 					</div>

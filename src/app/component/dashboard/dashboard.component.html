@@ -72,7 +72,7 @@
 						<td>{{ employeeInformationDto.lead }}</td>
 						<td>{{ employeeInformationDto.employee_Id }}</td>
 						<td>{{
-							employeeInformationDto.employee_details_leave_and_wfhDto.workingDayCount
+							employeeInformationDto.workingDayCount
 							}}</td>
 						<!-- <td>{{ employeeInformationDto.leavesInformations.wfhDates }}</td> -->
 						<td>
@@ -80,7 +80,7 @@
 
 
 								<div
-									*ngFor="let da of employeeInformationDto.employee_details_leave_and_wfhDto.wfhDates">
+									*ngFor="let da of employeeInformationDto.wfhDates">
 									{{da}}
 									<hr>
 								</div>
@@ -89,13 +89,13 @@
 						<!-- <td>{{  employeeInformationDto.leavesInformations.leaveDates }}</td> -->
 						<td><div style="overflow: auto; max-height: 200px;">
 								<div
-									*ngFor="let leave of employeeInformationDto.employee_details_leave_and_wfhDto.leaveDates">
+									*ngFor="let leave of employeeInformationDto.leaveDates">
 									{{leave}}
 									<hr>
 								</div>
 							</div></td>
 						<td>{{
-							employeeInformationDto.employee_details_leave_and_wfhDto.leaveCount
+							employeeInformationDto.leaveCount
 							}}</td>
 
 

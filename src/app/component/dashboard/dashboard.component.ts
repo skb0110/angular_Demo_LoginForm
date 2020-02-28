@@ -59,7 +59,7 @@ export class DashboardComponent implements OnInit {
   }
 
   private getEmployeeWithLeaveInformation() {
-    this.userService.getEmployeeWithLeaveInformation(Number(this.currentUser.username), 1, 2020).pipe(first()).subscribe(Emp => {
+    this.userService.getEmployeeWithLeaveInformation(Number(this.currentUser.username),new Date().getMonth() + 1,new Date().getFullYear()).pipe(first()).subscribe(Emp => {
       this.employeeInformationDto = Emp;
 
       console.log(this.employeeInformationDto);

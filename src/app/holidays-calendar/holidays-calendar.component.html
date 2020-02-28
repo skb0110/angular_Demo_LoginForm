@@ -3,10 +3,11 @@
 
 <section class="row" *ngIf="isManager">
 	<div class="col-md-3">
-		<input type="text" placeholder="holidayName" [(ngModel)]="holid.holidayName" >
+		<input type="text" [(ngModel)]="holiday.holidayName" >
 	</div>
 	<div class="col-md-3">
-		<input type="date" placeholder="2020/01/01" [(ngModel)]="holid.holiday_date" >
+
+		<input type="date" [(ngModel)]="holiday.holiday_date" value="{{holiday.holiday_date}}">
 	</div>
 	<div class="col-md-6">
 		<button type="submit" class="btn btn-primary btn-round" (click)="submit()">add
@@ -26,7 +27,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr *ngFor="let holi of holidays ; let id = index" >
+			<tr *ngFor="let holi of holidays ; let id = index">
 				<td>{{id}}</td>
 				<td>{{holi.holidayName}}</td>
 				<td>{{holi.holiday_date}}</td>

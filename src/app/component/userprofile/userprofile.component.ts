@@ -33,7 +33,7 @@ export class UserprofileComponent implements OnInit {
     console.log(this.emp);
 
 
-//    this.userForm = this.formBuilder.group(this.emp);
+    //    this.userForm = this.formBuilder.group(this.emp);
 
 
 
@@ -42,6 +42,10 @@ export class UserprofileComponent implements OnInit {
   onSubmit() {
     console.log(this.userForm)
     console.log(this.emp)
+    this.userService.updateEmployee(this.emp).subscribe(data =>{
+
+    });;
+
   }
 
 

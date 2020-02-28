@@ -61,7 +61,8 @@ checkoutForm = this.fb.group({
 
 ClearFilter(){
   console.log("mg")
-  this.getAllEmployeeWithLeaveInformation(12,2019);
+  this.getAllEmployeeWithLeaveInformation(new Date().getMonth() + 1,new Date().getFullYear());
+
 }
 
   onSubmit() {
@@ -90,7 +91,12 @@ public addWorkfromehomes(index,event) {
 
   ngOnInit() {
   this.getLeadNames();
-    this.getAllEmployeeWithLeaveInformation(1,2020);
+    this.getAllEmployeeWithLeaveInformation(new Date().getMonth() + 1,new Date().getFullYear());
+    
+    
+    
+
+    
 
   }
 
@@ -135,7 +141,7 @@ downloadFile() {
 }
 
 updateData(){
-  this.userService.updateEmployee(this.employeeInformationDtos).subscribe(data =>{
+  this.userService.updateAllEmployee(this.employeeInformationDtos).subscribe(data =>{
 
   });
 }

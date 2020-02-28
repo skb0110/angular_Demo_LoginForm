@@ -74,11 +74,16 @@ export class UserService {
         return this.http.post('http://localhost:8082/download1', employeeInformationDto, {responseType: 'blob' });
     }
 
-    updateEmployee(employeeInformationDto:EmployeeInformationDto []) {     
+    updateAllEmployee(employeeInformationDto:EmployeeInformationDto []) {     
    
         return this.http.post('http://localhost:8082/employee/updateAllEmployee', employeeInformationDto);
     }
     
+    updateEmployee(employeeInformationDto:EmployeeInformationDto) {     
+   
+        return this.http.post('http://localhost:8082/employee/updateEmployee', employeeInformationDto);
+    }
+
     addemployee(employeeInformationDto:EmployeeInformationDto)
     {
         return this.http.post('http://localhost:8082/employee/addEmployee', employeeInformationDto);
