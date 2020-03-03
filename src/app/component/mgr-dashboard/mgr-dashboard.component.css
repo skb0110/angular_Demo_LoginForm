@@ -26,3 +26,10 @@
   background-color: rgb(110, 119, 111);
   color: white;
 }
+.z_acions{
+  display: inline-block;
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
+  font-size: 12px;
+}

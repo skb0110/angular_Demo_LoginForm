@@ -8,7 +8,7 @@ import { AuthenticationService } from '../../service/authentication.service';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Leads } from 'src/app/model/leads';
 import { identifierModuleUrl } from '@angular/compiler';
-import { saveAs } from 'file-saver';
+//import { saveAs } from 'file-saver';
 import { ActivatedRoute, Router } from '@angular/router';
 
 declare var jquery:any;
@@ -23,7 +23,7 @@ export class MgrDashboardComponent implements OnInit {
   oppoSuits: any = ['2020', '2019', '2018', '2017'];
   month:any =['1','2','3','4','5','6','7','8','9','10','11','12']
   leadName:Leads;
-dates:Date[];
+  dates:Date[];
   currentUser: User;
   currentUserSubscription: Subscription;
   employeeInformationDtos:EmployeeInformationDto []=[];
@@ -52,7 +52,13 @@ selectedleadName:[]
 
 
 })
+_addLeaves(){
+  alert("Add Leaves for: ");
+}
 
+_deleteLeaves(){
+  alert("Delete Leaves for: ");
+}
 
 checkoutForm = this.fb.group({
   date: ['', Validators.required],
@@ -133,7 +139,7 @@ downloadFile() {
     console.log(data);
     const blob = new Blob([data], { type : 'application/vnd.ms.excel' });
              const file = new File([blob], 'IcannExcelReport' + '.xlsx', { type: 'application/vnd.ms.excel' });
-             saveAs(file);
+             //saveAs(file);
 
 
 });
@@ -152,7 +158,7 @@ downloadFile1() {
     console.log(data);
     const blob = new Blob([data], { type : 'application/vnd.ms.excel' });
              const file = new File([blob], 'IcannExcelReport' + '.xlsx', { type: 'application/vnd.ms.excel' });
-             saveAs(file);
+             //saveAs(file);
 });
  
 }

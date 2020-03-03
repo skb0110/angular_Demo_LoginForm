@@ -1,5 +1,5 @@
 <!-- nav -->
-<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
+<nav class="navbar navbar-expand navbar-dark bg-dark z_nav" *ngIf="currentUser">
     <div class="navbar-nav">
         <a class="nav-item nav-link" routerLink="/">Dashboard</a>
         <a class="nav-item nav-link" routerLink="mgr-dashboard" *ngIf="isManager">
@@ -12,7 +12,7 @@
 </nav>
 
 <!-- main app container -->
-<div class="jumbotron">
+<div class="container jumbotron-0">
     <router-outlet></router-outlet>
     <!-- <div class="container">
         <div class="row">

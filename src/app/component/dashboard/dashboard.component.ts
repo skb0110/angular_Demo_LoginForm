@@ -28,13 +28,9 @@ export class DashboardComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private userService: UserService,
     //   private jwt:JwtInterceptor
-
-
-
-  ) {
+  ){
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
       this.currentUser = user;
-
     });
     console.log(this.currentUser)
   }

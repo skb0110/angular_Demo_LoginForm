@@ -46,4 +46,9 @@
   .toolbar #twitter-logo:hover {
     opacity: 0.8;
   }
+  .z_nav.navbar{
+    border-radius: 0;
+    margin-bottom: 0;
+  }
+  
 
