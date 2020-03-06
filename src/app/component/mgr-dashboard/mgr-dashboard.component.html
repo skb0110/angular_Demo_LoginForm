@@ -3,19 +3,19 @@
 <h3>Welcome {{ currentUser.roles.roleNames }} {{
 	currentUser.username }}</h3>
 <section class="row">
-	
+
 	<div class="col-md-12">
 		<form [formGroup]="oppoSuitsForm" (ngSubmit)="onSubmit()">
 			<h6>Filter</h6>
 			<div>
-				<select  formControlName="selectedleadName" class="col-md-2">
+				<select formControlName="selectedleadName" class="col-md-2">
 					<option disabled>Select Lead Name </option>
 					<option>Lead Name</option>
 					<option *ngFor="let suit of leadName">{{suit}}</option>
 				</select>
 			</div>
 			<select formControlName="year" class="col-md-2">
-				<option disabled>Select  Year</option>
+				<option disabled>Select Year</option>
 				<option>year</option>
 				<option *ngFor="let suit of oppoSuits">{{suit}}</option>
 			</select>
@@ -24,9 +24,9 @@
 				<option>month</option>
 				<option *ngFor="let suit of month">{{suit}}</option>
 			</select>
-			
-			<button class="col-md-2" type="submit" (click)='ClearFilter()' >ClearFilter</button>
-			<button class="col-md-2">Submit</button>        
+
+			<button class="col-md-2" type="submit" (click)='ClearFilter()'>ClearFilter</button>
+			<button class="col-md-2">Submit</button>
 			<br>
 		</form>
 	</div>
@@ -34,113 +34,114 @@
 <section class="row">
 	<div class="row">
 		<div class="col-md-8">
-		<table id="customers" style="overflow-x:auto;">
-			<thead>
-				<tr>
-					<th>Role</th>
-					<th>Technology</th>
-					<th>Level</th>
-					<th>Location</th>
-					<th>Name</th>
-					<th>Person Responsible for updating data</th>
-					<th>Emp. Code</th>
-					<th>WFH</th>
-					<th>wfhDates</th>
-					<th>leaveDates</th>
-					<th>leaveCount</th>
-					<th>Action</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr *ngFor="let employeeInformationDto of employeeInformationDtos ; let id = index">
-					<td>{{ employeeInformationDto.designationRole }}</td>
-					<td>{{ employeeInformationDto.level }}</td>
-					<td>{{ employeeInformationDto.level }}</td>
-					<td>{{ employeeInformationDto.location }}</td>
-					<td>{{ employeeInformationDto.firstName }} {{
+			<table id="customers" style="overflow-x:auto;">
+				<thead>
+					<tr>
+						<th>Role</th>
+						<th>Technology</th>
+						<th>Level</th>
+						<th>Location</th>
+						<th>Name</th>
+						<th>Person Responsible for updating data</th>
+						<th>Emp. Code</th>
+						<th>WFH</th>
+						<th>wfhDates</th>
+						<th>leaveDates</th>
+						<th>leaveCount</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let employeeInformationDto of employeeInformationDtos ; let id = index">
+						<td>{{ employeeInformationDto.designationRole }}</td>
+						<td>{{ employeeInformationDto.level }}</td>
+						<td>{{ employeeInformationDto.level }}</td>
+						<td>{{ employeeInformationDto.location }}</td>
+						<td>{{ employeeInformationDto.firstName }} {{
 							employeeInformationDto.lastName }}</td>
-					<td>{{ employeeInformationDto.lead }}</td>
-					<td>{{ employeeInformationDto.employee_Id }}</td>
-					<td>{{ employeeInformationDto.workingDayCount }}</td>
-					<!-- <td>{{ employeeInformationDto.leavesInformations.wfhDates }}</td> -->
+						<td>{{ employeeInformationDto.lead }}</td>
+						<td>{{ employeeInformationDto.employee_Id }}</td>
+						<td>{{ employeeInformationDto.workingDayCount }}</td>
+						<!-- <td>{{ employeeInformationDto.leavesInformations.wfhDates }}</td> -->
 
-					<td>
-						<div style="overflow: auto; max-height: 200px;">
+						<td>
+							<div style="overflow: auto; max-height: 200px;">
 
-							<p>
-							<input type="date" [(ngModel)]="workfromehome" (click)="addWorkfromehomes(id,$event)" />
-						</p>
-							<!-- <span (keyup)="changeValue(id, 'name', $event)" (blur)="updateList(id, 'name', $event)" contenteditable="true">{{person.name}}</span>  -->
-
-
-							<div *ngFor="let da of employeeInformationDto.wfhDates ">
-								<span (keyup)="changeValue(id, 'name', $event)" (blur)="updateList(id, 'name', $event)"
-									contenteditable="true">{{da}}</span>
-
-								{{da}} <span id='close' ng-click="workfromehomeremove($parent.$index,$index)">x</span>
-								<hr>
-							</div>
-						</div>
-					</td>
-
-					<!-- <td>
-          <div style="overflow: auto; max-height: 200px;">
-<input type="date" [(ngModel)]="dateemp">
-
-              <ul *ngFor="let da of employeeInformationDto.wfhDates">
-                 <li > {{da}}</li>
-                  <hr>
-              </ul>
-          </div>
-      </td> -->
+								<p>
+									<input type="date" [(ngModel)]="workfromehome"
+										(click)="addWorkfromehomes(id,$event)" />
+								</p>
+								<!-- <span (keyup)="changeValue(id, 'name', $event)" (blur)="updateList(id, 'name', $event)" contenteditable="true">{{person.name}}</span>  -->
 
 
+								<div *ngFor="let da of employeeInformationDto.wfhDates ">
+									<!-- <span (keyup)="changeValue(id, 'name', $event)"	(blur)="updateList(id, 'name', $event)" contenteditable="true">{{da}}</span> -->
 
-					<!-- <td>{{  employeeInformationDto.leavesInformations.leaveDates }}</td> -->
-					<!-- <td><div style="overflow: auto; max-height: 200px;">
-							<p>
-								<input type="date" id="leaveDate" ng-model="leavefromehome"
-									ng-change="addleavefromehomes($index)">
-							</p>
-
-
-							<div *ngFor="let leave of employeeInformationDto.employee_details_leave_and_wfhDto.leaveDates">
-
-								 {{leave}} <span id='close'
-									ng-click="leaveromehomeremove($parent.$index,$index)">x</span>
-								<hr>
-							</div>
-                        </div>
-         </td> -->
-
-					<td>
-						<div style="overflow: auto; max-height: 200px;">
-							<ul>
-								<li *ngFor="let leave of employeeInformationDto.leaveDates">
-									{{leave}}
+									{{da}}
+									<!-- <span id='close'	ng-click="workfromehomeremove($parent.$index,$index)">x</span> -->
 									<hr>
-								</li>
-							</ul>
-						</div>
-					</td>
-					<td>{{ employeeInformationDto.leaveCount }}</td>
-					<td>
-						<span class="z_acions" (click)="_addLeaves()">
-							Add
-						</span> | 
-						<span class="z_acions" (click)="_deleteLeaves()">
-							Delete
-						</span>
-					</td>
-				</tr>
-			</tbody>
+								</div>
+							</div>
+						</td>
 
-		</table>
-		<button class="btn btn-primary btn-round" type="submit" (click)='updateData( )'>updateEmployee</button>
-	</div>
+						<td>
+							<div style="overflow: auto; max-height: 200px;">
+								<ul>
+									<li *ngFor="let leave of employeeInformationDto.leaveDates">
+										{{leave}}
+										<hr>
+									</li>
+								</ul>
+							</div>
+						</td>
+						<td>{{ employeeInformationDto.leaveCount }}</td>
+						<td>
+							<span class="z_acions" (click)="openModal(editProfileModal, employeeInformationDto)"> Add
+							</span> |
+
+							<span class="z_acions" (click)="openModal(editProfileModal, employeeInformationDto)">Delete</span>
+						</td>
+					</tr>
+				</tbody>
+
+			</table>
+			<button class="btn btn-primary btn-round" type="submit" (click)='updateData( )'>updateEmployee</button>
+		</div>
 	</div>
 
+
+
+	<ng-template #editProfileModal let-modal>
+		<div class="modal-header">
+			<h5 class="modal-title" id="editProfileLabel">Edit Profile</h5>
+			<button type="button" class="close" (click)="modal.dismiss()" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+
+		<div class="modal-body">
+
+			<label>EmployeeName</label>{{empDetails.employee_Id}}
+
+			<form [formGroup]="editProfileForm" (ngSubmit)="updateEmployee()">
+				<div class="form-group row">
+					<label for="firstname" class="col-sm-4 col-form-label">First Name</label>
+					<div class="col-sm-8">
+						<input type="number" class="form-control" formControlName="firstname" id="firstname">
+					</div>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Close</button>
+					<button type="submit" class="btn btn-primary">Save changes</button>
+				</div>
+			</form>
+
+		</div>
+	</ng-template>
 </section>
+
+
 <br> <br>
 <button class="btn btn-primary btn-round" type="submit" (click)='downloadFile1()'>DownloadNewReport</button>
 <br>

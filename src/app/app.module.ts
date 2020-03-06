@@ -13,6 +13,7 @@ import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { MgrDashboardComponent } from './component/mgr-dashboard/mgr-dashboard.component';
 import { UserprofileComponent } from './component/userprofile/userprofile.component';
 import { HolidaysCalendarComponent } from './holidays-calendar/holidays-calendar.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
  
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { HolidaysCalendarComponent } from './holidays-calendar/holidays-calendar
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    NgbModule,
     ReactiveFormsModule,
     HttpClientModule
     
