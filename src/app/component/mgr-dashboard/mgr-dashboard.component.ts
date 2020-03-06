@@ -129,6 +129,8 @@ export class MgrDashboardComponent implements OnInit {
   updateEmployee() {
 
     console.log(this.editProfileForm.value.firstname)
+    this.userService.updateEmployee(this.empDetails).subscribe(data => {
+    });
     this.modalService.dismissAll();
     console.log("Open Model");
 
