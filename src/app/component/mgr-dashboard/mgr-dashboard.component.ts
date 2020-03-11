@@ -61,7 +61,7 @@ export class MgrDashboardComponent implements OnInit {
       backdropClass:'custom-dialog-backdrop-class',
       panelClass:'custom-dialog-panel-class',
 			//data: {pageValue: this.sendValue}
-			data: {pageValue: employeeInformationDto.employee_Id}
+			data: {pageValue: employeeInformationDto}
     });
  
     dialogRef.afterClosed().subscribe(result => {

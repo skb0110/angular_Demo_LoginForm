@@ -66,11 +66,6 @@
 						<!-- <td>{{ employeeInformationDto.leavesInformations.wfhDates }}</td> -->
 						<td>
 							<div style="overflow: auto; max-height: 200px;">
-								
-								<p>
-									<input type="date" [(ngModel)]="workfromehome"
-										(click)="addWorkfromehomes(id,$event)" />
-								</p>
 								<!-- <span (keyup)="changeValue(id, 'name', $event)" (blur)="updateList(id, 'name', $event)" contenteditable="true">{{person.name}}</span>  -->
 								<div *ngFor="let da of employeeInformationDto.wfhDates ">
 									<!-- <span (keyup)="changeValue(id, 'name', $event)"	(blur)="updateList(id, 'name', $event)" contenteditable="true">{{da}}</span> -->
@@ -83,12 +78,18 @@
 
 						<td>
 							<div style="overflow: auto; max-height: 200px;">
-								<ul>
-									<li *ngFor="let leave of employeeInformationDto.leaveDates">
+								<!-- <ul >
+									<li  *ngFor="let leave of employeeInformationDto.leaveDates">
 										{{leave}}
 										<hr>
 									</li>
-								</ul>
+								</ul> -->
+
+								<div  *ngFor="let leave of employeeInformationDto.leaveDates">
+									{{leave}}
+									<hr>
+								</div>
+
 							</div>
 						</td>
 						<td>{{ employeeInformationDto.leaveCount }}</td>

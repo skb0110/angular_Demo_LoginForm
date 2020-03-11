@@ -18,6 +18,7 @@ export class UserService {
 
     currentUser: User;
   currentUserSubscription: Subscription;
+ 
     
   
     constructor(private http: HttpClient ,
@@ -94,5 +95,9 @@ export class UserService {
         return this.http.get<Holidays []>('http://localhost:8082/getHolidays');
     }
 
+    updateLeave( formData: any)
+    {
+        return this.http.post('http://localhost:8082/updateLeave',formData)
+    }
 
 }

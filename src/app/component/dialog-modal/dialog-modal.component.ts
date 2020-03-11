@@ -1,6 +1,7 @@
 import { Component, OnInit, Optional, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { UserService } from 'src/app/service/user.service';
 
 interface LeaveOption {
   value: string;
@@ -16,12 +17,17 @@ export class DialogModalComponent implements OnInit {
   fromPage:string;
   fromDialog:string;
   formData: any;
+  empId: number;
+  leaveId: number;
 
   constructor(
+    private userService: UserService,
     public dialogRef: MatDialogRef<DialogModalComponent>,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any
   ) { 
     this.fromPage = data.pageValue;
+    this.empId= data.pageValue.employee_Id;
+    this.leaveId=data.pageValue.employee_leave_and_wfh_id;
   }
 
   ngOnInit() {
@@ -41,13 +47,18 @@ export class DialogModalComponent implements OnInit {
   submitDialog(){ 
     let form = this.leaveForm.value
     this.formData = {
-      empId: this.fromPage,
+      leaveId:this.leaveId,
+      empId: this.empId,
       leaveType: form.leaveType,
       fromDate: form.fromDate.toLocaleDateString(),
       toDate: form.toDate.toLocaleDateString()
     }
     console.log(this.formData)
     this.dialogRef.close({event:'close',data:this.formData}); 
+    this.userService.updateLeave(this.formData).subscribe(data => {
+    console.log(this.formData);
+    });;
+
   }
 
   closeDialog(){ 
