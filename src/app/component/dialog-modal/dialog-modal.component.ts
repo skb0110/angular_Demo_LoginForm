@@ -55,9 +55,8 @@ export class DialogModalComponent implements OnInit {
     }
     console.log(this.formData)
     this.dialogRef.close({event:'close',data:this.formData}); 
-    this.userService.updateLeave(this.formData).subscribe(data => {
-    console.log(this.formData);
-    });;
+
+   
 
   }
 

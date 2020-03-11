@@ -11,10 +11,10 @@ import { identifierModuleUrl } from '@angular/compiler';
 //import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 //import { saveAs } from 'file-saver';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { DialogModalComponent } from '../dialog-modal/dialog-modal.component';
-
+export let browserRefresh = false;
 declare var jquery: any;
 declare var $: any;
 
@@ -34,11 +34,11 @@ export class MgrDashboardComponent implements OnInit {
   employeeInformationDtos: EmployeeInformationDto[] = [];
   empDetails: EmployeeInformationDto;
   workfromehome;
-
   dialogValue: any;
   sendValue: string;
 
   constructor(
+    
     public fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
@@ -67,7 +67,15 @@ export class MgrDashboardComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log('The dialog was closed', result);
-        this.dialogValue = JSON.stringify(result.data);
+        //this.dialogValue = JSON.stringify(result.data);
+
+        this.userService.updateLeave(result.data).subscribe(data => {          
+          console.log(data);
+          if(data==null)
+          {
+            this.ngOnInit();
+          } 
+          });;
       }
     });
   }
@@ -111,6 +119,7 @@ export class MgrDashboardComponent implements OnInit {
 
 
   ngOnInit() {
+
     this.getLeadNames();
     this.getAllEmployeeWithLeaveInformation(new Date().getMonth() + 1, new Date().getFullYear());
   }
