@@ -21,5 +21,6 @@ export class EmployeeInformationDto {
 	  leaveDates:String [];
 	  leaveCount;
 	  wfhDates:String [];
+	  wfhCount:number;
 	  workingDayCount:number;
 }

@@ -1,9 +1,7 @@
-<!-- <h1>Hi {{currentUser.firstName}}!</h1> -->
-<!-- <h1>Hi {{currentUser.id}}!</h1> -->
+
 <h3>Welcome {{ currentUser.roles.roleNames }} {{
 	currentUser.username }}</h3>
 <section class="row">
-
 	<div class="col-md-12">
 		<form [formGroup]="oppoSuitsForm" (ngSubmit)="onSubmit()">
 			<h6>Filter</h6>
@@ -13,7 +11,6 @@
 					<option>Lead Name</option>
 					<option *ngFor="let suit of leadName">{{suit}}</option>
 				</select>
-			
 				<select formControlName="year" class="col-md-2">
 					<option disabled>Select Year</option>
 					<option>year</option>
@@ -24,14 +21,14 @@
 					<option>month</option>
 					<option *ngFor="let suit of month">{{suit}}</option>
 				</select>
-
 				<button class="col-md-2" type="submit" (click)='ClearFilter()'>ClearFilter</button>
 				<button class="col-md-2">Submit</button>
-			<br>
-		</div>
+				<br>
+			</div>
 		</form>
 	</div>
 </section>
+
 <section class="row">
 	<div class="row">
 		<div class="col-md-12">
@@ -47,8 +44,8 @@
 						<th>Emp. Code</th>
 						<th>WFH</th>
 						<th>wfhDates</th>
-						<th>leaveDates</th>
 						<th>leaveCount</th>
+						<th>leaveDates</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -62,64 +59,40 @@
 							employeeInformationDto.lastName }}</td>
 						<td>{{ employeeInformationDto.lead }}</td>
 						<td>{{ employeeInformationDto.employee_Id }}</td>
-						<td>{{ employeeInformationDto.workingDayCount }}</td>
-						<!-- <td>{{ employeeInformationDto.leavesInformations.wfhDates }}</td> -->
+						<td>{{ employeeInformationDto.wfhCount }}</td>
 						<td>
 							<div style="overflow: auto; max-height: 200px;">
-								<!-- <span (keyup)="changeValue(id, 'name', $event)" (blur)="updateList(id, 'name', $event)" contenteditable="true">{{person.name}}</span>  -->
 								<div *ngFor="let da of employeeInformationDto.wfhDates ">
-									<!-- <span (keyup)="changeValue(id, 'name', $event)"	(blur)="updateList(id, 'name', $event)" contenteditable="true">{{da}}</span> -->
 									{{da}}
-									<!-- <span id='close'	ng-click="workfromehomeremove($parent.$index,$index)">x</span> -->
 									<hr>
 								</div>
-							</div>
-						</td>
-
-						<td>
-							<div style="overflow: auto; max-height: 200px;">
-								<!-- <ul >
-									<li  *ngFor="let leave of employeeInformationDto.leaveDates">
-										{{leave}}
-										<hr>
-									</li>
-								</ul> -->
-
-								<div  *ngFor="let leave of employeeInformationDto.leaveDates">
-									{{leave}}
-									<hr>
-								</div>
-
 							</div>
 						</td>
 						<td>{{ employeeInformationDto.leaveCount }}</td>
 						<td>
-							<!-- <span class="z_acions" 
-								(click)="openModal(editProfileModal, employeeInformationDto)"> Add
-							</span> | -->
-							<div>
-								<button mat-raised-button (click)="openDialog(employeeInformationDto)">Open Dialog</button>
+							<div style="overflow: auto; max-height: 200px;">
+								<div *ngFor="let leave of employeeInformationDto.leaveDates">
+									{{leave}}
+									<hr>
+								</div>
 							</div>
-
-							<span class="z_acions" 
-								(click)="openModal(editProfileModal, employeeInformationDto)">Delete
+						</td>
+						<td>
+							<div>
+								<button mat-raised-button (click)="openDialog(employeeInformationDto)">Open	Dialog</button>
+							</div>
+							<span class="z_acions" (click)="openModal(editProfileModal, employeeInformationDto)">Delete
 							</span>
 						</td>
 					</tr>
 				</tbody>
-
 			</table>
 			<button class="btn btn-primary btn-round" type="submit" (click)='updateData( )'>updateEmployee</button>
 		</div>
-		<!-- <mat-form-field>
-			<input matInput [(ngModel)]="sendValue" placeholder="Enter value for Dialog">
-		</mat-form-field> -->
 		<div *ngIf="dialogValue">
 			<b>Value From Dialog</b>: {{dialogValue}}
 		</div>
 	</div>
-
-
 
 	<ng-template #editProfileModal let-modal>
 		<div class="modal-header">
@@ -128,11 +101,8 @@
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
-
 		<div class="modal-body">
-
 			<label>EmployeeName</label>{{empDetails.employee_Id}}
-
 			<form [formGroup]="editProfileForm" (ngSubmit)="updateEmployee()">
 				<div class="form-group row">
 					<label for="firstname" class="col-sm-4 col-form-label">First Name</label>
@@ -142,26 +112,20 @@
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-4 col-form-label">Select Date</label>
-
-					<!-- <material-datepicker [(date)]="yourModelDate"></material-datepicker> -->
 					<mat-form-field>
 						<input matInput [matDatepicker]="picker" placeholder="Choose a date">
 						<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
 						<mat-datepicker #picker></mat-datepicker>
 					</mat-form-field>
 				</div>
-
-
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Close</button>
 					<button type="submit" class="btn btn-primary">Save changes</button>
 				</div>
 			</form>
-
 		</div>
 	</ng-template>
 </section>
-
 
 <br> <br>
 <button class="btn btn-primary btn-round" type="submit" (click)='downloadFile1()'>DownloadNewReport</button>

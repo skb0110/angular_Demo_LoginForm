@@ -33,10 +33,10 @@ export class MgrDashboardComponent implements OnInit {
   currentUserSubscription: Subscription;
   employeeInformationDtos: EmployeeInformationDto[] = [];
   empDetails: EmployeeInformationDto;
-	workfromehome;
-	
-	dialogValue:any; 
-  sendValue:string;
+  workfromehome;
+
+  dialogValue: any;
+  sendValue: string;
 
   constructor(
     public fb: FormBuilder,
@@ -45,28 +45,28 @@ export class MgrDashboardComponent implements OnInit {
     //private modalService: NgbModal,
     private authenticationService: AuthenticationService,
     private userService: UserService,
-		//   private jwt:JwtInterceptor
-		public dialog: MatDialog
+    //   private jwt:JwtInterceptor
+    public dialog: MatDialog
   ) {
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
       this.currentUser = user;
 
       console.log(this.currentUser);
     })
-	}
-	
-	openDialog(employeeInformationDto): void {
+  }
+
+  openDialog(employeeInformationDto): void {
     const dialogRef = this.dialog.open(DialogModalComponent, {
       width: '600px',
-      backdropClass:'custom-dialog-backdrop-class',
-      panelClass:'custom-dialog-panel-class',
-			//data: {pageValue: this.sendValue}
-			data: {pageValue: employeeInformationDto}
+      backdropClass: 'custom-dialog-backdrop-class',
+      panelClass: 'custom-dialog-panel-class',
+      //data: {pageValue: this.sendValue}
+      data: { pageValue: employeeInformationDto }
     });
- 
+
     dialogRef.afterClosed().subscribe(result => {
-      if(result){
-        console.log('The dialog was closed',result);
+      if (result) {
+        console.log('The dialog was closed', result);
         this.dialogValue = JSON.stringify(result.data);
       }
     });
@@ -108,27 +108,14 @@ export class MgrDashboardComponent implements OnInit {
     // alert(JSON.stringify(this.oppoSuitsForm.value))
   }
 
-  public addWorkfromehomes(index, event) {
-    console.log(index, this.workfromehome);
-    //this.employeeInformationDtos[index].wfhDates.push();
-    // this.availableTargets.splice(index, 1);
-    console.log("workfrome home" + index, +event.value)
-  }
+
 
   ngOnInit() {
     this.getLeadNames();
     this.getAllEmployeeWithLeaveInformation(new Date().getMonth() + 1, new Date().getFullYear());
   }
 
-  openModal(targetModal, employeeInformationDto) {
-    console.log("open model: " + employeeInformationDto.employee_Id)
-    this.empDetails = employeeInformationDto;
-		console.log(this.empDetails)
-    // this.modalService.open(targetModal, {
-    //   centered: true,
-    //   backdrop: 'static'
-    // });
-  }
+
 
   updateEmployee() {
     console.log(this.editProfileForm.value.firstname)
