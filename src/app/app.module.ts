@@ -26,6 +26,7 @@ import {
 import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog';
 import { DialogModalComponent } from './component/dialog-modal/dialog-modal.component';
+import { DialogDeleteComponent } from './component/dialog-delete/dialog-delete.component';
 //import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
  
 @NgModule({
@@ -37,7 +38,8 @@ import { DialogModalComponent } from './component/dialog-modal/dialog-modal.comp
     MgrDashboardComponent,
     UserprofileComponent,
     HolidaysCalendarComponent,
-    DialogModalComponent
+    DialogModalComponent,
+    DialogDeleteComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +59,8 @@ import { DialogModalComponent } from './component/dialog-modal/dialog-modal.comp
     MatSelectModule
   ],
   entryComponents: [
-    DialogModalComponent
+    DialogModalComponent,
+    DialogDeleteComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

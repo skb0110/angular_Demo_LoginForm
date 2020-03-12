@@ -14,6 +14,7 @@ import { identifierModuleUrl } from '@angular/compiler';
 import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { DialogModalComponent } from '../dialog-modal/dialog-modal.component';
+import { DialogDeleteComponent } from '../dialog-delete/dialog-delete.component';
 export let browserRefresh = false;
 declare var jquery: any;
 declare var $: any;
@@ -55,7 +56,7 @@ export class MgrDashboardComponent implements OnInit {
     })
   }
 
-  openDialog(employeeInformationDto): void {
+  addLeaves(employeeInformationDto): void {
     const dialogRef = this.dialog.open(DialogModalComponent, {
       width: '600px',
       backdropClass: 'custom-dialog-backdrop-class',
@@ -76,6 +77,23 @@ export class MgrDashboardComponent implements OnInit {
             this.ngOnInit();
           } 
           });;
+      }
+    });
+  }
+
+  deleteLeave(employeeInformationDto){
+    const deleteDialog = this.dialog.open(DialogDeleteComponent, {
+      width: '600px',
+      backdropClass: 'custom-dialog-backdrop-class',
+      panelClass: 'custom-dialog-panel-class',
+      //data: {pageValue: this.sendValue}
+      data: { pageValue: employeeInformationDto }
+    });
+
+    deleteDialog.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('The deleteDialog was closed', result);
+        //this.dialogValue = JSON.stringify(result.data);
       }
     });
   }
