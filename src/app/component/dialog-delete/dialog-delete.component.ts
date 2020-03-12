@@ -1,5 +1,7 @@
 import { Component, OnInit, Optional, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { EmployeeInformationDto } from 'src/app/model/employeeInformationDto';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-dialog-delete',
@@ -13,18 +15,21 @@ export class DialogDeleteComponent implements OnInit {
   formData: any;
   empId: number;
   leaveId: number;
+  employeeInformationDtos:EmployeeInformationDto;
 
   constructor(
     public deleteDialog: MatDialogRef<DialogDeleteComponent>,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any
   ) { 
     this.fromPage = data.pageValue;
+    console.log(data.pageValue);
     this.empId= data.pageValue.employee_Id;
+    this.employeeInformationDtos=data.pageValue;
     //this.leaveId=data.pageValue.employee_leave_and_wfh_id;
   }
 
   submitDialog(){ 
-    // let form = this.leaveForm.value
+    let form = this.leaveForm.value
     // this.formData = {
     //   leaveId:this.leaveId,
     //   empId: this.empId,
@@ -45,5 +50,9 @@ export class DialogDeleteComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  leaveForm = new FormGroup({
+
+  });
 
 }

@@ -2,9 +2,17 @@
 	<h2>Delete Leave(s)</h2>
 	<b>Employee Id</b>:{{empId}}
 	<div class="row">
-		<!-- <form [formGroup]='leaveForm'>
 
-		</form> -->
+		 <form [formGroup]='leaveForm'>
+				<label>Work From home</label>
+			<ol>
+				<li  *ngFor="let wfhDate of employeeInformationDtos.wfhDates"  >{{wfhDate}}</li>
+			</ol>
+			<label>Leaves</label>
+			<ol>
+				<li  *ngFor="let leaveDate of employeeInformationDtos.leaveDates"  >{{leaveDate}}</li>
+			</ol>
+		</form> 
 	</div>
 	<div>
 		<button mat-raised-button (click)="submitDialog()">Submit</button>

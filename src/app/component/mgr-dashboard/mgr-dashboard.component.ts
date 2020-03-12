@@ -76,7 +76,7 @@ export class MgrDashboardComponent implements OnInit {
           {
             this.ngOnInit();
           } 
-          });;
+          });
       }
     });
   }
@@ -93,6 +93,7 @@ export class MgrDashboardComponent implements OnInit {
     deleteDialog.afterClosed().subscribe(result => {
       if (result) {
         console.log('The deleteDialog was closed', result);
+       
         //this.dialogValue = JSON.stringify(result.data);
       }
     });
