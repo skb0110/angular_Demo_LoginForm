@@ -63,7 +63,7 @@
 						<td>{{ employeeInformationDto.wfhCount }}</td>
 						<!-- <td>{{ employeeInformationDto.leavesInformations.wfhDates }}</td> -->
 						<td>
-							<div style="overflow: auto; max-height: 200px;">
+							<div style="overflow: auto; max-height: 200px;width: 75px;">
 								<div *ngFor="let da of employeeInformationDto.wfhDates ">
 									{{da}}
 								</div>
@@ -71,10 +71,9 @@
 						</td>
 						<td>{{ employeeInformationDto.leaveCount }}</td>
 						<td>
-							<div style="overflow: auto; max-height: 200px;">
+							<div style="overflow: auto; max-height: 200px;width: 75px;">
 								<div *ngFor="let leave of employeeInformationDto.leaveDates">
 									{{leave}}
-									<hr>
 								</div>
 							</div>
 						</td>

@@ -3,15 +3,27 @@
 	<b>Employee Id</b>:{{empId}}
 	<div class="row">
 
-		 <form [formGroup]='leaveForm'>
-				<label>Work From home</label>
-			<ol>
-				<li  *ngFor="let wfhDate of employeeInformationDtos.wfhDates"  >{{wfhDate}}</li>
-			</ol>
-			<label>Leaves</label>
-			<ol>
-				<li  *ngFor="let leaveDate of employeeInformationDtos.leaveDates"  >{{leaveDate}}</li>
-			</ol>
+		 <form [formGroup]='leaveForm' style="width: 100%;">
+			 <div class="leave-sec col-md-6">
+				<h4>Work From home</h4>
+				<div class="leave-sec-inner">
+					<ul>
+						<li *ngFor="let wfhDate of employeeInformationDtos.wfhDates">
+							{{wfhDate}} <span (click)="removeThisDate([wfhDate], $event)" title="wfh">x</span>
+						</li>
+					</ul>
+				</div>
+			 </div>
+			 <div class="leave-sec col-md-6">
+				<h4>Leaves</h4>
+				<div class="leave-sec-inner">
+					<ul>
+						<li *ngFor="let leaveDate of employeeInformationDtos.leaveDates">
+							{{leaveDate}} <span (click)="removeThisDate([leaveDate], $event)" title="leave">x</span>
+						</li>
+					</ul>
+				</div>
+			 </div>
 		</form> 
 	</div>
 	<div>

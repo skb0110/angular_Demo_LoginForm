@@ -1,0 +1,37 @@
+.leave-sec{
+  display: inline-block;
+  vertical-align: top;
+
+}
+.leave-sec-inner{
+  border: 1px solid #ccc;
+}
+.leave-sec-inner ol, .leave-sec-inner ul{
+  padding: 10px;
+}
+.leave-sec-inner li{
+  display: inline-block;
+  background: #eee;
+  padding: 0 0px 0 5px;
+  margin: 0px 5px 5px 0;
+}
+.leave-sec-inner li.active{
+  opacity: 0.5;
+  text-decoration: line-through;
+  pointer-events: none;
+}
+.leave-sec-inner li span{
+  border-left: 1px solid #666;
+  padding: 0 5px;
+  cursor: pointer;
+}
+.leave-sec-inner li span:hover{
+  font-weight: bold;
+  background: #ccc;
+  color: red;
+}
+h4{
+  background: #ccc;
+  margin-bottom: 0;
+  text-align: center;
+}

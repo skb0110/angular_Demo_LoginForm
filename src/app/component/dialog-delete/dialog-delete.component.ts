@@ -16,6 +16,8 @@ export class DialogDeleteComponent implements OnInit {
   empId: number;
   leaveId: number;
   employeeInformationDtos:EmployeeInformationDto;
+  leaveToRemove:any = [];
+  wfhToRemove:any = [];
 
   constructor(
     public deleteDialog: MatDialogRef<DialogDeleteComponent>,
@@ -29,22 +31,36 @@ export class DialogDeleteComponent implements OnInit {
   }
 
   submitDialog(){ 
-    let form = this.leaveForm.value
-    // this.formData = {
-    //   leaveId:this.leaveId,
-    //   empId: this.empId,
-    //   leaveType: form.leaveType,
-    //   fromDate: form.fromDate.toLocaleDateString(),
-    //   toDate: form.toDate.toLocaleDateString()
-    // }
-    // console.log(this.formData)
-    //this.dialogRef.close({event:'close',data:this.formData}); 
 
-   
+    for (var i = this.wfhToRemove.length -1; i >= 0; i--)
+    this.employeeInformationDtos.wfhDates.splice(this.wfhToRemove[i],1);
 
+    for (var k = this.leaveToRemove.length -1; k >= 0; k--)
+    this.employeeInformationDtos.leaveDates.splice(this.leaveToRemove[k],1);
+
+    console.log("--------"+this.employeeInformationDtos.wfhDates)
+    this.employeeInformationDtos.wfhCount = this.employeeInformationDtos.wfhCount - this.wfhToRemove.length;
+    this.employeeInformationDtos.leaveCount = this.employeeInformationDtos.leaveCount - this.leaveToRemove.length;
+
+    this.deleteDialog.close({event:'close',data:this.employeeInformationDtos}); 
+    alert("Leave Removed successfully for Employee id: "+this.empId);
+  }
+
+  removeThisDate(date: any, evt:any){
+    let leaveType = evt.target.title;
+    if(leaveType === "wfh"){
+      this.wfhToRemove.push(date[0]);
+    } else{
+      this.leaveToRemove.push(date[0]);
+    }  
+    console.log("Removed date is: "+ date);
+    evt.target.parentElement.classList.add('active');
+    console.log("leaveToRemoved : "+this.leaveToRemove +" wfhToRemove :"+this.wfhToRemove);
   }
 
   closeDialog(){ 
+    this.leaveToRemove = [];
+    this.wfhToRemove = [];
     this.deleteDialog.close(); 
   }
 
