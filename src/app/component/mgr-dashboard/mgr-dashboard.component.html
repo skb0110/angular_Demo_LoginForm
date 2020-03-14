@@ -1,31 +1,32 @@
 <!-- <h1>Hi {{currentUser.firstName}}!</h1> -->
 <!-- <h1>Hi {{currentUser.id}}!</h1> -->
-<h3>Welcome {{ currentUser.roles.roleNames }} {{
+<h3 class="page_header">Welcome {{ currentUser.roles.roleNames }} {{
 	currentUser.username }}</h3>
 <section class="row">
 	<div class="col-md-12">
-		<form [formGroup]="oppoSuitsForm" (ngSubmit)="onSubmit()">
-			<h6>Filter</h6>
-			<div>
-				<select formControlName="selectedleadName" class="col-md-2">
-					<option disabled>Select Lead Name </option>
-					<option>Lead Name</option>
+		<h4>Filter below table data by selecting Lead Name, Year and Month, then click Apply Filter</h4>
+		<form [formGroup]="oppoSuitsForm" (ngSubmit)="onSubmit()" class="">
+			
+			<div class="col-md-8 search_wrap">
+				<select formControlName="selectedleadName" class="col-md-5 custom-select mb-3">
+					<option selected>Select Lead Name </option>
 					<option *ngFor="let suit of leadName">{{suit}}</option>
 				</select>
-				<select formControlName="year" class="col-md-2">
-					<option disabled>Select Year</option>
-					<option>year</option>
+				<select formControlName="year" class="col-md-3 custom-select mb-3">
+					<option selected>Select Year</option>
 					<option *ngFor="let suit of oppoSuits">{{suit}}</option>
 				</select>
-				<select formControlName="month" class="col-md-2">
-					<option disabled>Select Month</option>
-					<option>month</option>
+				<select formControlName="month" class="col-md-3 custom-select mb-3">
+					<option selected>Select Month</option>
 					<option *ngFor="let suit of month">{{suit}}</option>
 				</select>
-				<button class="col-md-2" type="submit" (click)='ClearFilter()'>ClearFilter</button>
-				<button class="col-md-2">Submit</button>
-				<br>
 			</div>
+			<div class="col-md-4 search_wrap">
+				<button class="col-md-1x btn btn-dark">Apply Filter</button>
+				<button class="col-md-1x btn btn-secondary" type="submit" (click)='ClearFilter()'>ClearFilter</button>
+			</div>
+				
+			
 		</form>
 	</div>
 </section>
@@ -79,9 +80,9 @@
 						</td>
 						<td>
 							<div class="tempMarBot">
-								<button mat-raised-button color="primary" 
+								<button class="btn btn-dark" 
 									(click)="addLeaves(employeeInformationDto)">Add</button> 
-								<button mat-raised-button color="warn" 
+								<button class="btn btn-outline-secondary" 
 									(click)="deleteLeave(employeeInformationDto)">Delete</button>
 							</div>
 						</td>

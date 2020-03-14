@@ -29,6 +29,11 @@
 .wid100p{
   width: 100%;
 }
+.tempMarBot button{
+  font-size: 12px;
+  font-weight: 600;
+  width: 60px;
+}
 .tempMarBot button:first-child{
   margin-bottom: 5px;
 }

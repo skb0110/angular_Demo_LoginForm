@@ -36,3 +36,15 @@
 th.wid_75{
   width: 75px !important;
 }
+.search_wrap{
+  display: inline-block;
+  vertical-align: top;
+}
+.search_wrap select, .search_wrap button{
+  margin-right: 5px;
+}
+h3.page_header{
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 25px;
+}
