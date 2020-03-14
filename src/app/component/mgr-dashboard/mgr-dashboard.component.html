@@ -78,9 +78,11 @@
 							</div>
 						</td>
 						<td>
-							<div>
-								<button mat-raised-button (click)="addLeaves(employeeInformationDto)">Add</button> | 
-								<button mat-raised-button (click)="deleteLeave(employeeInformationDto)">Delete</button>
+							<div class="tempMarBot">
+								<button mat-raised-button color="primary" 
+									(click)="addLeaves(employeeInformationDto)">Add</button> 
+								<button mat-raised-button color="warn" 
+									(click)="deleteLeave(employeeInformationDto)">Delete</button>
 							</div>
 						</td>
 					</tr>

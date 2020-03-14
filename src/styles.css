@@ -5,3 +5,30 @@
   pointer-events: auto;
   background: rgba(0, 0, 0, 0.5);
 }
+/* Common styling will be hare */
+.btn_sec{
+  margin-top: 20px;
+}
+.btn_sec button{
+  margin-right: 10px;
+}
+.dialogForm{
+  margin-top: 25px;
+}
+.dialogForm .mat-form-field{
+  padding-right: 15px;
+  width: 33.3%;
+}
+.dialogForm .mat-form-field:last-child{
+  padding-right: 0px !important;
+}
+.dialogForm .mat-form-field .mat-icon-button {
+  height: 30px !important;
+  line-height: 42px !important;
+}
+.wid100p{
+  width: 100%;
+}
+.tempMarBot button:first-child{
+  margin-bottom: 5px;
+}

@@ -17,7 +17,7 @@
 }
 .leave-sec-inner li.active{
   opacity: 0.5;
-  text-decoration: line-through;
+  text-decoration: line-through red;
   pointer-events: none;
 }
 .leave-sec-inner li span{

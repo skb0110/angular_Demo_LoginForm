@@ -31,6 +31,9 @@ export class DialogDeleteComponent implements OnInit {
   }
 
   submitDialog(){ 
+    //short array
+    //this.wfhToRemove.sort(function(a,b){ return b - a; });
+    //this.leaveToRemove.sort(function(a,b){ return b - a; });
 
     for (var i = this.wfhToRemove.length -1; i >= 0; i--)
     this.employeeInformationDtos.wfhDates.splice(this.wfhToRemove[i],1);
@@ -49,9 +52,11 @@ export class DialogDeleteComponent implements OnInit {
   removeThisDate(date: any, evt:any){
     let leaveType = evt.target.title;
     if(leaveType === "wfh"){
-      this.wfhToRemove.push(date[0]);
+      //this.wfhToRemove.push(date[0]);
+      this.wfhToRemove.push(evt.target.id);
     } else{
-      this.leaveToRemove.push(date[0]);
+      //this.leaveToRemove.push(date[0]);
+      this.leaveToRemove.push(evt.target.id);
     }  
     console.log("Removed date is: "+ date);
     evt.target.parentElement.classList.add('active');
