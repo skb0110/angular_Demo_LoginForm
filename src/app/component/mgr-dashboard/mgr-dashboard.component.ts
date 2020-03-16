@@ -10,7 +10,7 @@ import { Leads } from 'src/app/model/leads';
 import { identifierModuleUrl } from '@angular/compiler';
 //import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-//import { saveAs } from 'file-saver';
+import { saveAs } from 'file-saver';
 import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { DialogModalComponent } from '../dialog-modal/dialog-modal.component';
@@ -92,8 +92,15 @@ export class MgrDashboardComponent implements OnInit {
 
     deleteDialog.afterClosed().subscribe(result => {
       if (result) {
-        console.log('The deleteDialog was closed', result);
-       
+        console.log('The deleteDialog was closed', result.data);
+        
+        this.userService.deleteLeave(result.data).subscribe(w => {          
+          console.log(w);
+          if(w==null)
+          {
+            this.ngOnInit();
+          } 
+          });
         //this.dialogValue = JSON.stringify(result.data);
       }
     });
@@ -181,7 +188,7 @@ export class MgrDashboardComponent implements OnInit {
       console.log(data);
       const blob = new Blob([data], { type: 'application/vnd.ms.excel' });
       const file = new File([blob], 'IcannExcelReport' + '.xlsx', { type: 'application/vnd.ms.excel' });
-      //saveAs(file);
+      saveAs(file);
     });
   }
 
@@ -193,9 +200,13 @@ export class MgrDashboardComponent implements OnInit {
     // check something
     this.userService.download1(this.employeeInformationDtos).subscribe(data => {
       console.log(data);
+      //var a= document.createElement("a");
       const blob = new Blob([data], { type: 'application/vnd.ms.excel' });
       const file = new File([blob], 'IcannExcelReport' + '.xlsx', { type: 'application/vnd.ms.excel' });
-      //saveAs(file);
+     //a.href=URL.createObjectURL(file);
+   //  a.download="IcannExcelReport";
+    // a.click();
+       saveAs(file);
     });
   }
 }

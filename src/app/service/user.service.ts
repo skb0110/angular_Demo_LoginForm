@@ -85,6 +85,10 @@ export class UserService {
         return this.http.post('http://localhost:8082/employee/updateEmployee', employeeInformationDto);
     }
 
+    deleteLeave(employeeInformationDto:EmployeeInformationDto) {     
+   
+        return this.http.post('http://localhost:8082/delete', employeeInformationDto);
+    }
     addemployee(employeeInformationDto:EmployeeInformationDto)
     {
         return this.http.post('http://localhost:8082/employee/addEmployee', employeeInformationDto);
