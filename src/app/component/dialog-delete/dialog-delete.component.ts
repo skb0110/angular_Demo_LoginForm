@@ -32,8 +32,8 @@ export class DialogDeleteComponent implements OnInit {
 
   submitDialog(){ 
     //short array
-    //this.wfhToRemove.sort(function(a,b){ return b - a; });
-    //this.leaveToRemove.sort(function(a,b){ return b - a; });
+    this.wfhToRemove.sort(function(a,b){ return a - b; });
+    this.leaveToRemove.sort(function(a,b){ return a - b; });
 
     for (var i = this.wfhToRemove.length -1; i >= 0; i--)
     this.employeeInformationDtos.wfhDates.splice(this.wfhToRemove[i],1);
