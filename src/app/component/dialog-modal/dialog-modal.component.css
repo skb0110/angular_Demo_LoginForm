@@ -1,0 +1,7 @@
+.dateWrap input{
+  width: 70%;
+}
+.mat-typography .cdk-overlay-container{
+  pointer-events: auto;
+  background: rgba(0, 0, 0, 0.5);
+}

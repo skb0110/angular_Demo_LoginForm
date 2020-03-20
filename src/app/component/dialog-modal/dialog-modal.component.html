@@ -1,0 +1,39 @@
+<div class="col-md-12">	
+	<h2>Add Leave(s)</h2>
+	<b>Employee Id</b>:{{empId}}
+	<div class="row">
+		<form [formGroup]='leaveForm' class="dialogForm">
+
+		<mat-form-field>
+			<mat-label>Leave Type</mat-label>
+			<mat-select name="leave" formControlName="leaveType">
+				<mat-option *ngFor="let leave of leaves" [value]="leave.value">
+					{{leave.viewValue}}
+				</mat-option>
+			</mat-select>
+		</mat-form-field>
+
+		<mat-form-field> 
+			<!-- <label>From Date</label>	 -->
+			<div class="dateWrap">
+				<input matInput [matDatepicker]="pickerFrom" formControlName="fromDate" placeholder="Choose From Date">
+				<mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+				<mat-datepicker #pickerFrom></mat-datepicker>
+			</div>
+		</mat-form-field>
+		
+		<mat-form-field>
+				<!-- <label>To Date</label> -->
+				<div class="dateWrap">
+					<input matInput [matDatepicker]="pickerTo" formControlName="toDate" placeholder="Choose T0 date">
+					<mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+					<mat-datepicker #pickerTo></mat-datepicker>
+				</div>
+		</mat-form-field>
+		</form>
+	</div>
+	<div class="btn_sec">
+		<button mat-raised-button color="primary" (click)="submitDialog()">Submit</button>
+		<button mat-raised-button (click)="closeDialog()">Cancel</button>
+	</div>
+</div>

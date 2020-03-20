@@ -18,6 +18,7 @@ export class UserService {
 
     currentUser: User;
   currentUserSubscription: Subscription;
+ 
     
   
     constructor(private http: HttpClient ,
@@ -84,6 +85,10 @@ export class UserService {
         return this.http.post('http://localhost:8082/employee/updateEmployee', employeeInformationDto);
     }
 
+    deleteLeave(employeeInformationDto:EmployeeInformationDto) {     
+   
+        return this.http.post('http://localhost:8082/delete', employeeInformationDto);
+    }
     addemployee(employeeInformationDto:EmployeeInformationDto)
     {
         return this.http.post('http://localhost:8082/employee/addEmployee', employeeInformationDto);
@@ -94,5 +99,9 @@ export class UserService {
         return this.http.get<Holidays []>('http://localhost:8082/getHolidays');
     }
 
+    updateLeave( formData: any)
+    {
+        return this.http.post('http://localhost:8082/updateLeave',formData)
+    }
 
 }

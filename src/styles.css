@@ -1,1 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.mat-typography .cdk-overlay-container{
+  pointer-events: auto;
+  background: rgba(0, 0, 0, 0.5);
+}
+/* Common styling will be hare */
+.btn_sec{
+  margin-top: 20px;
+}
+.btn_sec button{
+  margin-right: 10px;
+}
+.dialogForm{
+  margin-top: 25px;
+}
+.dialogForm .mat-form-field{
+  padding-right: 15px;
+  width: 33.3%;
+}
+.dialogForm .mat-form-field:last-child{
+  padding-right: 0px !important;
+}
+.dialogForm .mat-form-field .mat-icon-button {
+  height: 30px !important;
+  line-height: 42px !important;
+}
+.wid100p{
+  width: 100%;
+}
+.tempMarBot button{
+  font-size: 12px;
+  font-weight: 600;
+  width: 60px;
+}
+.tempMarBot button:first-child{
+  margin-bottom: 5px;
+}

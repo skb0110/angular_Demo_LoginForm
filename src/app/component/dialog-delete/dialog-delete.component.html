@@ -1,0 +1,33 @@
+<div class="col-md-12">	
+	<h2>Delete Leave(s)</h2>
+	<b>Employee Id</b>:{{empId}}
+	<div class="row">
+
+		 <form [formGroup]='leaveForm' class="dialogForm wid100p">
+			 <div class="leave-sec col-md-6">
+				<h4>Work From home</h4>
+				<div class="leave-sec-inner">
+					<ul>
+						<li *ngFor="let wfhDate of employeeInformationDtos.wfhDates; index as i" >
+							{{wfhDate}} <span (click)="removeThisDate([wfhDate], $event)" title="wfh" [id]='i'>x</span>
+						</li>
+					</ul>
+				</div>
+			 </div>
+			 <div class="leave-sec col-md-6">
+				<h4>Leaves</h4>
+				<div class="leave-sec-inner">
+					<ul>
+						<li *ngFor="let leaveDate of employeeInformationDtos.leaveDates;  index as k">
+							{{leaveDate}} <span (click)="removeThisDate([leaveDate], $event)" title="leave" [id]='k'>x</span>
+						</li>
+					</ul>
+				</div>
+			 </div>
+		</form> 
+	</div>
+	<div class="btn_sec">
+		<button mat-raised-button color="primary" (click)="submitDialog()">Submit</button>
+		<button mat-raised-button (click)="closeDialog()">Cancel</button>
+	</div>
+</div>
