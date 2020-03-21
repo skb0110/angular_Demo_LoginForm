@@ -36,7 +36,8 @@ export class UserService {
 
     getLeadNames() {
         
-        return this.http.get<Leads>(`http://localhost:8082/employee/getleadNames`);
+        return this.http.get<Leads[]>(`http://localhost:8082/employee/getleadNames`);
+        console.log("names")
     }
 
     register(user: User) {

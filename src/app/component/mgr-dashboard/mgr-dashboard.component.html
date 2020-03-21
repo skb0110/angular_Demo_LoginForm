@@ -10,7 +10,7 @@
 			<div class="col-md-8 search_wrap">
 				<select formControlName="selectedleadName" class="col-md-5 custom-select mb-3">
 					<option selected>Select Lead Name </option>
-					<option *ngFor="let suit of leadName">{{suit}}</option>
+					<option *ngFor="let suit of leadName">{{suit.empName}}</option>
 				</select>
 				<select formControlName="year" class="col-md-3 custom-select mb-3">
 					<option selected>Select Year</option>

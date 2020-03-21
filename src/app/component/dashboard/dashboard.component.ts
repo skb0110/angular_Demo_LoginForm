@@ -20,7 +20,7 @@ export class DashboardComponent implements OnInit {
   currentUser: User;
   currentUserSubscription: Subscription;
   users: User[] = [];
-  leadName: Leads;
+  leadName: Leads[];
   employeeInformationDto: EmployeeInformationDto;
 
 

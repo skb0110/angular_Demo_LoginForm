@@ -28,8 +28,8 @@ export class MgrDashboardComponent implements OnInit {
 
   oppoSuits: any = ['2020', '2019', '2018', '2017'];
   month: any = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
-  leadName: Leads;
   dates: Date[];
+  leadName:Leads[]=[];
   currentUser: User;
   currentUserSubscription: Subscription;
   employeeInformationDtos: EmployeeInformationDto[] = [];
@@ -118,13 +118,13 @@ export class MgrDashboardComponent implements OnInit {
     from: new FormControl('', Validators.required),
   })
 
-  _addLeaves() {
-    alert("Add Leaves for: ");
-  }
+  // _addLeaves() {
+  //   alert("Add Leaves for: ");
+  // }
 
-  _deleteLeaves() {
-    alert("Delete Leaves for: ");
-  }
+  // _deleteLeaves() {
+  //   alert("Delete Leaves for: ");
+  // }
 
   checkoutForm = this.fb.group({
     date: ['', Validators.required],
@@ -143,7 +143,7 @@ export class MgrDashboardComponent implements OnInit {
   }
 
 
-
+//start Controller
   ngOnInit() {
 
     this.getLeadNames();
@@ -174,11 +174,12 @@ export class MgrDashboardComponent implements OnInit {
       console.log(this.employeeInformationDtos);
     })
   }
-
+//for get lead Name
   private getLeadNames() {
-    this.userService.getLeadNames().pipe(first()).subscribe(Leads => {
-      this.leadName = Leads;
-      console.log(this.leadName);
+    this.userService.getLeadNames().pipe(first()).subscribe(Leadsaray => {
+
+      this.leadName=Leadsaray;
+      console.log(Leadsaray);
     });
   }
 
@@ -192,21 +193,22 @@ export class MgrDashboardComponent implements OnInit {
     });
   }
 
-  updateData() {
-    this.userService.updateAllEmployee(this.employeeInformationDtos).subscribe(data => {
-    });
-  }
-  downloadFile1() {
-    // check something
-    this.userService.download1(this.employeeInformationDtos).subscribe(data => {
-      console.log(data);
-      //var a= document.createElement("a");
-      const blob = new Blob([data], { type: 'application/vnd.ms.excel' });
-      const file = new File([blob], 'IcannExcelReport' + '.xlsx', { type: 'application/vnd.ms.excel' });
-     //a.href=URL.createObjectURL(file);
-   //  a.download="IcannExcelReport";
-    // a.click();
-       saveAs(file);
-    });
-  }
+  // updateData() {
+  //   this.userService.updateAllEmployee(this.employeeInformationDtos).subscribe(data => {
+  //   });
+  // }
+ 
+  // downloadFile1() {
+  //   // check something
+  //   this.userService.download1(this.employeeInformationDtos).subscribe(data => {
+  //     console.log(data);
+  //     //var a= document.createElement("a");
+  //     const blob = new Blob([data], { type: 'application/vnd.ms.excel' });
+  //     const file = new File([blob], 'IcannExcelReport' + '.xlsx', { type: 'application/vnd.ms.excel' });
+  //    //a.href=URL.createObjectURL(file);
+  //  //  a.download="IcannExcelReport";
+  //   // a.click();
+  //      saveAs(file);
+  //   });
+  // }
 }
