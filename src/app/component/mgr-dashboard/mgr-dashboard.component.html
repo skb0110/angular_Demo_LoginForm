@@ -9,21 +9,21 @@
 			
 			<div class="col-md-8 search_wrap">
 				<select formControlName="selectedleadName" class="col-md-5 custom-select mb-3">
-					<option selected>Select Lead Name </option>
-					<option *ngFor="let suit of leadName">{{suit.empName}}</option>
+					<!-- <option [ngValue]="null" selected>Select Lead Name </option> -->
+					<option *ngFor="let suit of leadName" [ngValue]="suit.empName" [disabled]="makeDisabled">{{suit.empName}}</option>
 				</select>
 				<select formControlName="year" class="col-md-3 custom-select mb-3">
 					<option selected>Select Year</option>
-					<option *ngFor="let suit of oppoSuits">{{suit}}</option>
+					<option *ngFor="let suit of oppoSuits" [ngValue]="suit">{{suit}}</option>
 				</select>
 				<select formControlName="month" class="col-md-3 custom-select mb-3">
 					<option selected>Select Month</option>
-					<option *ngFor="let suit of month">{{suit}}</option>
+					<option *ngFor="let suit of month" [ngValue]="suit">{{suit}}</option>
 				</select>
 			</div>
 			<div class="col-md-4 search_wrap">
-				<button class="col-md-1x btn btn-dark">Apply Filter</button>
-				<button class="col-md-1x btn btn-secondary" type="submit" (click)='ClearFilter()'>ClearFilter</button>
+				<button class="col-md-1x btn btn-dark" type="submit" [disabled]="oppoSuitsForm.invalid">Apply Filter</button>
+				<button class="col-md-1x btn btn-secondary" type="button" (click)='clearFilter()'>ClearFilter</button>
 			</div>
 				
 			
@@ -129,6 +129,8 @@
 	</ng-template>
 </section>
 
-<br> <br>
-<button class="btn btn-primary btn-round" type="submit" (click)='downloadFile()'>DownloadNewReport</button>
-<br>
+<div class="download_report_btn_sec">
+	<button class="btn btn-primary btn-round" type="button" (click)='downloadTimesheetReport()'><i class="fas fa-clock"></i> | Download Timesheet Report</button>
+	<button class="btn btn-primary btn-round" type="button" (click)='downloadMealCouponReport()'><i class="fas fa-coffee"></i> | Download Meal Coupon Report </button>
+	<button class="btn btn-primary btn-round" type="button" (click)='downloadShiftAllowReport()'><i class="fas fa-business-time"></i> | Download Shift Allowance Report</button>
+</div>
