@@ -48,3 +48,10 @@ h3.page_header{
   font-weight: bold;
   margin-top: 25px;
 }
+.download_report_btn_sec{
+  margin-top: 20px;
+  text-align: right;
+}
+.download_report_btn_sec button{
+  margin: 10px 0 15px 30px;
+}
