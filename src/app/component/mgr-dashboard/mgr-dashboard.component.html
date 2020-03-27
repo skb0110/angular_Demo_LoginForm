@@ -22,8 +22,8 @@
 				</select>
 			</div>
 			<div class="col-md-4 search_wrap">
-				<button class="col-md-1x btn btn-dark" type="submit" [disabled]="oppoSuitsForm.invalid">Apply Filter</button>
-				<button class="col-md-1x btn btn-secondary" type="button" (click)='clearFilter()'>ClearFilter</button>
+				<button class="col-md-1x btn btn-dark" type="submit" [disabled]="oppoSuitsForm.invalid"><i class="fas fa-filter"></i> | Apply Filter</button>
+				<button class="col-md-1x btn btn-secondary" type="button" (click)='clearFilter()'><i class="fas fa-eraser"></i> | ClearFilter</button>
 			</div>
 				
 			
@@ -79,11 +79,11 @@
 							</div>
 						</td>
 						<td>
-							<div class="tempMarBot">
-								<button class="btn btn-dark" 
-									(click)="addLeaves(employeeInformationDto)">Add</button> 
-								<button class="btn btn-outline-secondary" 
-									(click)="deleteLeave(employeeInformationDto)">Delete</button>
+							<div class="actionBtnWrap">
+								<button class="btn" title="Add Leave(s)"
+									(click)="addLeaves(employeeInformationDto)"><i class="fas fa-plus-circle"></i></button> 
+								<button class="btn" title="Delete Leave(s)"
+									(click)="deleteLeave(employeeInformationDto)"><i class="fas fa-trash"></i></button>
 							</div>
 						</td>
 					</tr>

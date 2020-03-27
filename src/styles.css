@@ -29,23 +29,44 @@
 .wid100p{
   width: 100%;
 }
-.tempMarBot button{
-  font-size: 12px;
-  font-weight: 600;
-  width: 60px;
+.actionBtnWrap button{
+  font-size: 18px;
+  padding: 0 10px;
+  color: #666;
 }
-.tempMarBot button:first-child{
+.actionBtnWrap button:hover{
+  font-size: 18px;
+  padding: 0 10px;
+}
+/* .actionBtnWrap button:first-child{
   margin-bottom: 5px;
-}
+} */
 
 
 /* Footer section */
 .footer{
   background: #343a40;
-  padding: 20px 10px;
+  padding: 10px 10px;
   margin-top: 20px;
   color: #ccc;
-  position: absolute;
+  position: fixed;
   width: 100%;
   bottom: 0;
+  text-align: center;
+}
+.form_wrap{
+  margin: 0 auto;
+  margin-top: 12%;
+
+}
+.form_wrap h2{
+  background: #ccc;
+  padding: 5px 15px;
+  margin-bottom: 0;
+  border-radius: 5px 5px 0px 0px;
+}
+.login_form{
+  border: 1px solid #ccc;
+  padding: 20px 30px 20px;
+  border-radius: 0px 0px 5px 5px;
 }
