@@ -39,6 +39,7 @@ export class MgrDashboardComponent implements OnInit {
   dialogValue: any;
   sendValue: string;
   makeDisabled: boolean = false;
+  filterRequiredError: boolean =false;
 
   constructor(
     
@@ -147,7 +148,7 @@ export class MgrDashboardComponent implements OnInit {
     //this.oppoSuitsForm.patchValue({selectedleadName: this.currentUser.username});
     if(this.currentUser.roles.roleId === 2){
       this.makeDisabled = true;
-    } else{
+    } else {
       this.makeDisabled = false;
     }
     this.onSubmit()
@@ -167,17 +168,20 @@ export class MgrDashboardComponent implements OnInit {
 
   onSubmit() {
     console.log(this.oppoSuitsForm.value.selectedleadName)
-    this.getAllEmployeeWithLeaveInformationbylead(this.oppoSuitsForm.value.selectedleadName, this.oppoSuitsForm.value.month, this.oppoSuitsForm.value.year);
-    //  this.getAllEmployeeWithLeaveInformation(this.oppoSuitsForm.value.month,this.oppoSuitsForm.value.year);
+    let selectedLead = this.oppoSuitsForm.value.selectedleadName;
+    let selecteMonth = this.oppoSuitsForm.value.month;
+    let selectedYear = this.oppoSuitsForm.value.year;
+    if(selectedLead && selecteMonth && selectedYear){
+      this.getAllEmployeeWithLeaveInformationbylead(selectedLead, selecteMonth, selectedYear);
+      this.filterRequiredError=false
+    } else{
+      this.filterRequiredError = true;
+    }
     // alert(JSON.stringify(this.oppoSuitsForm.value))
   }
 
   ngOnInit() {
-
     this.getLeadNames();
-    //this.buildSearchForm();
-    //this.getAllEmployeeWithLeaveInformation(new Date().getMonth() + 1, new Date().getFullYear());
-    
   }
 
   updateEmployee() {
@@ -186,7 +190,6 @@ export class MgrDashboardComponent implements OnInit {
     });
     //this.modalService.dismissAll();
     console.log("Open Model");
-
   }
 
   private getAllEmployeeWithLeaveInformation(month: number, year: number) {
@@ -214,7 +217,6 @@ export class MgrDashboardComponent implements OnInit {
   }
 
   downloadTimesheetReport() {
-    // check something
     this.userService.download(this.employeeInformationDtos).subscribe(data => {
       console.log(data);
       const blob = new Blob([data], { type: 'application/vnd.ms.excel' });
@@ -225,9 +227,6 @@ export class MgrDashboardComponent implements OnInit {
 
 
   downloadMealCouponReport(){
-    //do the code for download Meal coupon Report
-    alert("do the code for download Meal coupon Report");
-    
     this.userService.getMealCupan(this.employeeInformationDtos).subscribe(data => {
       console.log(data);
       const blob = new Blob([data], { type: 'application/vnd.ms.excel' });
@@ -237,8 +236,6 @@ export class MgrDashboardComponent implements OnInit {
   }
 
   downloadShiftAllowReport(){
-    //do the code for download Shift Allowance Report
-    alert("do the code for download Shift Allowance Report");
     this.userService.getShiftallownce(this.employeeInformationDtos).subscribe(data => {
       console.log(data);
       const blob = new Blob([data], { type: 'application/vnd.ms.excel' });
@@ -252,7 +249,6 @@ export class MgrDashboardComponent implements OnInit {
     });
   }
   downloadFile1() {
-    // check something
     this.userService.download1(this.employeeInformationDtos).subscribe(data => {
       console.log(data);
       //var a= document.createElement("a");

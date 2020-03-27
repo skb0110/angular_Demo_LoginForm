@@ -6,18 +6,21 @@
 	<div class="col-md-12">
 		<h4>Filter below table data by selecting Lead Name, Year and Month, then click Apply Filter</h4>
 		<form [formGroup]="oppoSuitsForm" (ngSubmit)="onSubmit()" class="">
-			
+			<div class="alert alert-danger alert-dismissible fade show" *ngIf="filterRequiredError">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+				<strong>Missing input!</strong> All below input fields required for Filter.
+			</div>
 			<div class="col-md-8 search_wrap">
 				<select formControlName="selectedleadName" class="col-md-5 custom-select mb-3">
 					<!-- <option [ngValue]="null" selected>Select Lead Name </option> -->
 					<option *ngFor="let suit of leadName" [ngValue]="suit.empName" [disabled]="makeDisabled">{{suit.empName}}</option>
 				</select>
 				<select formControlName="year" class="col-md-3 custom-select mb-3">
-					<option selected>Select Year</option>
+					<option [ngValue]="null" selected>Select Year</option>
 					<option *ngFor="let suit of oppoSuits" [ngValue]="suit">{{suit}}</option>
 				</select>
 				<select formControlName="month" class="col-md-3 custom-select mb-3">
-					<option selected>Select Month</option>
+					<option [ngValue]="null" selected>Select Month</option>
 					<option *ngFor="let suit of month" [ngValue]="suit">{{suit}}</option>
 				</select>
 			</div>
