@@ -227,11 +227,24 @@ export class MgrDashboardComponent implements OnInit {
   downloadMealCouponReport(){
     //do the code for download Meal coupon Report
     alert("do the code for download Meal coupon Report");
+    
+    this.userService.getMealCupan(this.employeeInformationDtos).subscribe(data => {
+      console.log(data);
+      const blob = new Blob([data], { type: 'application/vnd.ms.excel' });
+      const file = new File([blob], 'IcannExcelReportMealCupan' + '.xlsx', { type: 'application/vnd.ms.excel' });
+      saveAs(file);
+    });
   }
 
   downloadShiftAllowReport(){
     //do the code for download Shift Allowance Report
     alert("do the code for download Shift Allowance Report");
+    this.userService.getShiftallownce(this.employeeInformationDtos).subscribe(data => {
+      console.log(data);
+      const blob = new Blob([data], { type: 'application/vnd.ms.excel' });
+      const file = new File([blob], 'IcannExcelReportShiftAllow' + '.xlsx', { type: 'application/vnd.ms.excel' });
+      saveAs(file);
+    });
   }
 
   updateData() {
