@@ -40,6 +40,7 @@ export class MgrDashboardComponent implements OnInit {
   sendValue: string;
   makeDisabled: boolean = false;
   filterRequiredError: boolean =false;
+  currentRoldId: any;
 
   constructor(
     
@@ -146,6 +147,7 @@ export class MgrDashboardComponent implements OnInit {
     this.oppoSuitsForm.controls['year'].setValue(this.oppoSuits[this._setYear()]);
     this.oppoSuitsForm.controls['month'].setValue(this.month[this._setMonth()]);
     //this.oppoSuitsForm.patchValue({selectedleadName: this.currentUser.username});
+    this.currentRoldId = this.currentUser.roles.roleId;
     if(this.currentUser.roles.roleId === 2){
       this.makeDisabled = true;
     } else {
@@ -162,8 +164,13 @@ export class MgrDashboardComponent implements OnInit {
 
 
   clearFilter() {
-    console.log("mg")
-    this.getAllEmployeeWithLeaveInformation(new Date().getMonth() + 1, new Date().getFullYear());
+    this.buildSearchForm();
+  }
+
+  showAllData(){
+    if(this.currentUser.roles.roleId != 2){
+      this.getAllEmployeeWithLeaveInformation(new Date().getMonth() + 1, new Date().getFullYear());
+    }
   }
 
   onSubmit() {
