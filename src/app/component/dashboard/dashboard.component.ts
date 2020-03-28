@@ -20,7 +20,7 @@ export class DashboardComponent implements OnInit {
   currentUser: User;
   currentUserSubscription: Subscription;
   users: User[] = [];
-  leadName: Leads[];
+
   employeeInformationDto: EmployeeInformationDto;
 
 
@@ -36,10 +36,8 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadAllUsers();
+    
     this.getEmployeeWithLeaveInformation();
-
-    console.log(this.leadName);
 
   }
 
@@ -47,12 +45,7 @@ export class DashboardComponent implements OnInit {
     // unsubscribe to ensure no memory leaks
     this.currentUserSubscription.unsubscribe();
   }
-  private loadAllUsers() {
-    this.userService.getLeadNames().pipe(first()).subscribe(Leads => {
-      this.leadName = Leads;
-      console.log(this.leadName);
-    });
-  }
+  
 
   private getEmployeeWithLeaveInformation() {
     this.userService.getEmployeeWithLeaveInformation(Number(this.currentUser.username),new Date().getMonth() + 1,new Date().getFullYear()).pipe(first()).subscribe(Emp => {

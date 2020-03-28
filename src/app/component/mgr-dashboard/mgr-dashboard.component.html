@@ -53,6 +53,7 @@
 						<th>wfhDates</th>
 						<th>leaveCount</th>
 						<th>leaveDates</th>
+						<th>Total Working Date(22)</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -83,6 +84,7 @@
 								</div>
 							</div>
 						</td>
+						<td>{{employeeInformationDto.workingDayCount}}</td>
 						<td>
 							<div class="actionBtnWrap">
 								<button class="btn" title="Add Leave(s)"
@@ -138,4 +140,5 @@
 	<button class="btn btn-primary btn-round" type="button" (click)='downloadTimesheetReport()'><i class="fas fa-clock"></i> | Download Timesheet Report</button>
 	<button class="btn btn-primary btn-round" type="button" (click)='downloadMealCouponReport()'><i class="fas fa-coffee"></i> | Download Meal Coupon Report </button>
 	<button class="btn btn-primary btn-round" type="button" (click)='downloadShiftAllowReport()'><i class="fas fa-business-time"></i> | Download Shift Allowance Report</button>
+	<!-- <button class="btn btn-primary btn-round" type="button" (click)='updateData()'><i class="fas fa-business-time"></i> updateemployee</button> -->
 </div>

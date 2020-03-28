@@ -119,7 +119,7 @@ export class MgrDashboardComponent implements OnInit {
   }
   _setMonth(){
     let monLength = this.month.length; //2020,2019,2018,2017 
-    let currntMon = new Date().getMonth();
+    let currntMon = new Date().getMonth()+1;
     for(var i=0;i < monLength; i++ ){
       if(this.month[i] == currntMon){
         return i;        
@@ -223,7 +223,9 @@ export class MgrDashboardComponent implements OnInit {
     });
   }
 
-  downloadTimesheetReport() {
+  
+//    downloadFile1() {
+      downloadTimesheetReport(){
     this.userService.download(this.employeeInformationDtos).subscribe(data => {
       console.log(data);
       const blob = new Blob([data], { type: 'application/vnd.ms.excel' });
@@ -234,6 +236,7 @@ export class MgrDashboardComponent implements OnInit {
 
 
   downloadMealCouponReport(){
+
     this.userService.getMealCupan(this.employeeInformationDtos).subscribe(data => {
       console.log(data);
       const blob = new Blob([data], { type: 'application/vnd.ms.excel' });
@@ -242,7 +245,8 @@ export class MgrDashboardComponent implements OnInit {
     });
   }
 
-  downloadShiftAllowReport(){
+
+  downloadShiftAllowReport(){ 
     this.userService.getShiftallownce(this.employeeInformationDtos).subscribe(data => {
       console.log(data);
       const blob = new Blob([data], { type: 'application/vnd.ms.excel' });
@@ -255,7 +259,11 @@ export class MgrDashboardComponent implements OnInit {
     this.userService.updateAllEmployee(this.employeeInformationDtos).subscribe(data => {
     });
   }
-  downloadFile1() {
+
+  //Timeshift report with diffrent format
+  
+  downloadFile1() { 
+//  downloadTimesheetReport(){
     this.userService.download1(this.employeeInformationDtos).subscribe(data => {
       console.log(data);
       //var a= document.createElement("a");
