@@ -50,5 +50,12 @@
     border-radius: 0;
     margin-bottom: 0;
   }
+  .z_nav.navbar a{
+    color: #ccc;
+  }
+  .z_nav.navbar a:hover{
+    color: #fff;
+  }
+
   
 
