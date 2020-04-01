@@ -44,14 +44,24 @@ export class DialogModalComponent implements OnInit {
     {value: 'wfh', viewValue: 'WorkFromHome'}
   ];
 
+  //var dateobj = new Date();
+
+  dateFormatter(cdate:any){
+    function pad(n) {return n < 10 ? "0"+n : n;}
+    let result = pad(cdate.getMonth()+1)+"/"+pad(cdate.getDate())+"/"+cdate.getFullYear();
+    console.log("selected date is: "+result)
+    return result;
+  }
   submitDialog(){ 
     let form = this.leaveForm.value
     this.formData = {
       leaveId:this.leaveId,
       empId: this.empId,
       leaveType: form.leaveType,
-      fromDate: form.fromDate.toLocaleDateString(),
-      toDate: form.toDate.toLocaleDateString()
+      // fromDate: form.fromDate.toLocaleDateString(),
+      // toDate: form.toDate.toLocaleDateString()
+      fromDate: this.dateFormatter(form.fromDate),
+      toDate: this.dateFormatter(form.toDate)
     }
     console.log(this.formData)
     this.dialogRef.close({event:'close',data:this.formData}); 

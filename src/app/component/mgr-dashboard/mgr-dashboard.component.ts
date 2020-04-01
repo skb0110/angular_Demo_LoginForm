@@ -68,9 +68,11 @@ export class MgrDashboardComponent implements OnInit {
       panelClass: 'custom-dialog-panel-class',
       //data: {pageValue: this.sendValue}
       data: { pageValue: employeeInformationDto }
+      
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      console.log("Result of Add Leaes: ::: "+result.data);
       if (result) {
         console.log('The dialog was closed', result);
         //this.dialogValue = JSON.stringify(result.data);
@@ -118,7 +120,7 @@ export class MgrDashboardComponent implements OnInit {
     }
   }
   _setMonth(){
-    let monLength = this.month.length; //2020,2019,2018,2017 
+    let monLength = this.month.length; //1,2,3,4,5,6,7,8,9,10,11,12 
     let currntMon = new Date().getMonth()+1;
     for(var i=0;i < monLength; i++ ){
       if(this.month[i] == currntMon){
