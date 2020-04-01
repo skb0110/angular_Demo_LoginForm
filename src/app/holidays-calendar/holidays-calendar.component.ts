@@ -6,6 +6,7 @@ import { Role } from '../model/role';
 import { UserService } from '../service/user.service';
 import { first } from 'rxjs/operators';
 import { Holidays } from '../model/holidays';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-holidays-calendar',
@@ -16,17 +17,44 @@ export class HolidaysCalendarComponent implements OnInit {
   currentUser: User;
   holidays: Holidays[] = [];
   holiday:Holidays;
+  holidayForm: FormGroup;
+  
  
   constructor(
     private router: Router,
     private userService: UserService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private fb: FormBuilder,
   ) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
   ngOnInit() {
     this.getHolidays();
     this.holiday=new Holidays;
+    this.buildHolidayForm();
+  }
+
+  buildHolidayForm(){
+    this.holidayForm = this.fb.group({
+      holidayName: ['', Validators.required],
+      holidayDate: ['', Validators.required]
+    })
+  }
+
+  dateFormatter(cdate:any){
+    function pad(n) {return n < 10 ? "0"+n : n;}
+    let result = pad(cdate.getMonth()+1)+"/"+pad(cdate.getDate())+"/"+cdate.getFullYear();
+    console.log("selected date is: "+result)
+    return result;
+  }
+
+  onSubmitHoliday(){
+    let holidayFormData = {
+      holidayName : this.holidayForm.value.holidayName,
+      holidayDate : this.dateFormatter(this.holidayForm.value.holidayDate)
+    }
+    
+    alert("Holiday details going to submit: "+JSON.stringify(holidayFormData));
   }
 
   get isManager() {
@@ -42,6 +70,7 @@ export class HolidaysCalendarComponent implements OnInit {
       console.log(this.holidays);
     })
   }
+
   public submit() {
    console.log(+this.holiday.holidayName, this.holiday.holiday_date);
 
