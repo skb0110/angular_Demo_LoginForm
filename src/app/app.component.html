@@ -4,8 +4,8 @@
         <a class="nav-item nav-link" routerLink="/">Dashboard</a>
         <a class="nav-item nav-link" routerLink="mgr-dashboard" *ngIf="isManager">
           MangerDashboard</a>
-          <a class="nav-item nav-link" routerLink="userprofile">userprofile</a>
-          <a class="nav-item nav-link" routerLink="holidays">Holidays</a>
+        <a class="nav-item nav-link" routerLink="userprofile">UserProfile</a>
+        <a class="nav-item nav-link" routerLink="holidays">Holidays</a>
           
         <a class="nav-item nav-link pull-right" (click)="logout()">Logout</a>
     </div>
@@ -14,13 +14,11 @@
 <!-- main app container -->
 <div class="container jumbotron-0">
     <router-outlet></router-outlet>
-    <!-- <div class="container">
-        <div class="row">
-            <div class="col-sm-6 offset-sm-3">
-                <alert></alert>
-               
-            </div>
-        </div>
-    </div> -->
+</div>
+
+<div class="footer">
+    <div class="container">
+        <p>Privacy content: Above data is use as internal purpose and not to ues any external as it is a propery of <a href="https://www.zensar.com/" target="_blank">Zensar Technologies Limited</a></p>
+    </div>
 </div>
 

@@ -1,48 +1,8 @@
-<!-- <h1>Hi {{currentUser.firstName}}!</h1> -->
-<!-- <h1>Hi {{currentUser.id}}!</h1> -->
-<!-- <section class="row">
-<div >
-  <form [formGroup]="oppoSuitsForm" (ngSubmit)="onSubmit()">
-    <h6>Filter</h6>
-    <div >
-    <select  formControlName="selectedleadName" class="col-md-3">
-        <option disabled>Select Lead Name </option>
-        <option>Lead Name</option>
-        <option *ngFor="let suit of leadName">{{suit}}</option>
-       
-      </select>
-    
-    </div>
-        <select formControlName="year" class="col-md-3">
-          <option disabled>Select  Year</option>
-          <option>year</option>
-          <option *ngFor="let suit of oppoSuits">{{suit}}</option>
-        </select>
-    
-        <select formControlName="month" class="col-md-3">
-            <option disabled>Select Month</option>
-            <option>month</option>
-            <option *ngFor="let suit of month">{{suit}}</option>
-          </select>
-          <button class="col-md-4" type="submit" (click)='ClearFilter()' >ClearFilter</button>
-        <button>Submit</button>
-        
-        <br>
-      </form>
-    
-
-</div>
-</section> -->
-
 <section class="row">
 	<div class="row">
 		<div class="col-md-12">
 			<h3>Welcome {{ employeeInformationDto.firstName }} {{
 				employeeInformationDto.lastName }}</h3>
-
-
-
-
 			<table id="customers" style="overflow-x:auto;">
 				<thead>
 					<tr>
@@ -75,10 +35,7 @@
 						<!-- <td>{{ employeeInformationDto.leavesInformations.wfhDates }}</td> -->
 						<td>
 							<div style="overflow: auto; max-height: 200px;">
-
-
-								<div
-									*ngFor="let da of employeeInformationDto.wfhDates">
+								<div *ngFor="let da of employeeInformationDto.wfhDates">
 									{{da}}
 									<hr>
 								</div>
@@ -86,8 +43,7 @@
 						</td>
 						<!-- <td>{{  employeeInformationDto.leavesInformations.leaveDates }}</td> -->
 						<td><div style="overflow: auto; max-height: 200px;">
-								<div
-									*ngFor="let leave of employeeInformationDto.leaveDates">
+								<div *ngFor="let leave of employeeInformationDto.leaveDates">
 									{{leave}}
 									<hr>
 								</div>

@@ -28,15 +28,19 @@ export class MgrDashboardComponent implements OnInit {
 
   oppoSuits: any = ['2020', '2019', '2018', '2017'];
   month: any = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
-  leadName: Leads;
   dates: Date[];
+  leadName:Leads[]=[];
   currentUser: User;
   currentUserSubscription: Subscription;
   employeeInformationDtos: EmployeeInformationDto[] = [];
   empDetails: EmployeeInformationDto;
+  oppoSuitsForm: any;
   workfromehome;
   dialogValue: any;
   sendValue: string;
+  makeDisabled: boolean = false;
+  filterRequiredError: boolean =false;
+  currentRoldId: any;
 
   constructor(
     
@@ -53,6 +57,7 @@ export class MgrDashboardComponent implements OnInit {
       this.currentUser = user;
 
       console.log(this.currentUser);
+      //this.getLeadNames();
     })
   }
 
@@ -63,13 +68,14 @@ export class MgrDashboardComponent implements OnInit {
       panelClass: 'custom-dialog-panel-class',
       //data: {pageValue: this.sendValue}
       data: { pageValue: employeeInformationDto }
+      
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      console.log("Result of Add Leaes: ::: "+result.data);
       if (result) {
         console.log('The dialog was closed', result);
         //this.dialogValue = JSON.stringify(result.data);
-
         this.userService.updateLeave(result.data).subscribe(data => {          
           console.log(data);
           if(data==null)
@@ -93,7 +99,6 @@ export class MgrDashboardComponent implements OnInit {
     deleteDialog.afterClosed().subscribe(result => {
       if (result) {
         console.log('The deleteDialog was closed', result.data);
-        
         this.userService.deleteLeave(result.data).subscribe(w => {          
           console.log(w);
           if(w==null)
@@ -105,52 +110,88 @@ export class MgrDashboardComponent implements OnInit {
       }
     });
   }
+  _setYear(){
+    let yearLength = this.oppoSuits.length; //2020,2019,2018,2017 
+    let currntYr = new Date().getFullYear();
+    for(var i=0;i < yearLength; i++ ){
+      if(this.oppoSuits[i] == currntYr){
+        return i;        
+      }
+    }
+  }
+  _setMonth(){
+    let monLength = this.month.length; //1,2,3,4,5,6,7,8,9,10,11,12 
+    let currntMon = new Date().getMonth()+1;
+    for(var i=0;i < monLength; i++ ){
+      if(this.month[i] == currntMon){
+        return i;        
+      }
+    }
+  }
+  _setLeadName(){
+    let currentUser = Number(this.currentUser.username);
+    let leads = this.leadName;
+    for(var i=0;i<leads.length;i++){
+      if(leads[i].empId == currentUser){
+        return i;
+      }
+    }
+  }
 
+  buildSearchForm(){
+    this.oppoSuitsForm = this.fb.group({
+      year: ['', Validators.required],
+      month: ['', Validators.required],
+      selectedleadName: ['', Validators.required]
+    })
+    //console.log("Selected name is: "+this.oppoSuitsForm.selectedleadName +"selected id: "+this.oppoSuitsForm.selectedleadName.id)
+    this.oppoSuitsForm.controls['selectedleadName'].setValue(this.leadName[this._setLeadName()].empName);
+    this.oppoSuitsForm.controls['year'].setValue(this.oppoSuits[this._setYear()]);
+    this.oppoSuitsForm.controls['month'].setValue(this.month[this._setMonth()]);
+    //this.oppoSuitsForm.patchValue({selectedleadName: this.currentUser.username});
+    this.currentRoldId = this.currentUser.roles.roleId;
+    if(this.currentUser.roles.roleId === 2){
+      this.makeDisabled = true;
+    } else {
+      this.makeDisabled = false;
+    }
+    this.onSubmit()
+  }
   //selection value
-  oppoSuitsForm = this.fb.group({
-    year: [''],
-    month: [''],
-    selectedleadName: []
-  })
-
+  
   editProfileForm = this.fb.group({
     firstname: [''],
     from: new FormControl('', Validators.required),
   })
 
-  _addLeaves() {
-    alert("Add Leaves for: ");
+
+  clearFilter() {
+    this.buildSearchForm();
   }
 
-  _deleteLeaves() {
-    alert("Delete Leaves for: ");
-  }
-
-  checkoutForm = this.fb.group({
-    date: ['', Validators.required],
-  });
-
-  ClearFilter() {
-    console.log("mg")
-    this.getAllEmployeeWithLeaveInformation(new Date().getMonth() + 1, new Date().getFullYear());
+  showAllData(){
+    if(this.currentUser.roles.roleId != 2){
+      this.getAllEmployeeWithLeaveInformation(new Date().getMonth() + 1, new Date().getFullYear());
+    }
   }
 
   onSubmit() {
     console.log(this.oppoSuitsForm.value.selectedleadName)
-    this.getAllEmployeeWithLeaveInformationbylead(this.oppoSuitsForm.value.selectedleadName, this.oppoSuitsForm.value.month, this.oppoSuitsForm.value.year);
-    //  this.getAllEmployeeWithLeaveInformation(this.oppoSuitsForm.value.month,this.oppoSuitsForm.value.year);
+    let selectedLead = this.oppoSuitsForm.value.selectedleadName;
+    let selecteMonth = this.oppoSuitsForm.value.month;
+    let selectedYear = this.oppoSuitsForm.value.year;
+    if(selectedLead && selecteMonth && selectedYear){
+      this.getAllEmployeeWithLeaveInformationbylead(selectedLead, selecteMonth, selectedYear);
+      this.filterRequiredError=false
+    } else{
+      this.filterRequiredError = true;
+    }
     // alert(JSON.stringify(this.oppoSuitsForm.value))
   }
 
-
-
   ngOnInit() {
-
     this.getLeadNames();
-    this.getAllEmployeeWithLeaveInformation(new Date().getMonth() + 1, new Date().getFullYear());
   }
-
-
 
   updateEmployee() {
     console.log(this.editProfileForm.value.firstname)
@@ -158,7 +199,6 @@ export class MgrDashboardComponent implements OnInit {
     });
     //this.modalService.dismissAll();
     console.log("Open Model");
-
   }
 
   private getAllEmployeeWithLeaveInformation(month: number, year: number) {
@@ -175,15 +215,19 @@ export class MgrDashboardComponent implements OnInit {
     })
   }
 
+//for get lead Name
   private getLeadNames() {
-    this.userService.getLeadNames().pipe(first()).subscribe(Leads => {
-      this.leadName = Leads;
-      console.log(this.leadName);
+    this.userService.getLeadNames().pipe(first()).subscribe(Leadsaray => {
+
+      this.leadName=Leadsaray;
+      this.buildSearchForm()
+      console.log(Leadsaray);
     });
   }
 
-  downloadFile() {
-    // check something
+  
+//    downloadFile1() {
+      downloadTimesheetReport(){
     this.userService.download(this.employeeInformationDtos).subscribe(data => {
       console.log(data);
       const blob = new Blob([data], { type: 'application/vnd.ms.excel' });
@@ -192,12 +236,36 @@ export class MgrDashboardComponent implements OnInit {
     });
   }
 
+
+  downloadMealCouponReport(){
+
+    this.userService.getMealCupan(this.employeeInformationDtos).subscribe(data => {
+      console.log(data);
+      const blob = new Blob([data], { type: 'application/vnd.ms.excel' });
+      const file = new File([blob], 'IcannExcelReportMealCupan' + '.xlsx', { type: 'application/vnd.ms.excel' });
+      saveAs(file);
+    });
+  }
+
+
+  downloadShiftAllowReport(){ 
+    this.userService.getShiftallownce(this.employeeInformationDtos).subscribe(data => {
+      console.log(data);
+      const blob = new Blob([data], { type: 'application/vnd.ms.excel' });
+      const file = new File([blob], 'IcannExcelReportShiftAllow' + '.xlsx', { type: 'application/vnd.ms.excel' });
+      saveAs(file);
+    });
+  }
+
   updateData() {
     this.userService.updateAllEmployee(this.employeeInformationDtos).subscribe(data => {
     });
   }
-  downloadFile1() {
-    // check something
+
+  //Timeshift report with diffrent format
+  
+  downloadFile1() { 
+//  downloadTimesheetReport(){
     this.userService.download1(this.employeeInformationDtos).subscribe(data => {
       console.log(data);
       //var a= document.createElement("a");

@@ -36,7 +36,8 @@ export class UserService {
 
     getLeadNames() {
         
-        return this.http.get<Leads>(`http://localhost:8082/employee/getleadNames`);
+        return this.http.get<Leads[]>(`http://localhost:8082/employee/getleadNames`);
+        console.log("names")
     }
 
     register(user: User) {
@@ -103,5 +104,14 @@ export class UserService {
     {
         return this.http.post('http://localhost:8082/updateLeave',formData)
     }
-
+//for meal Cupan
+    getMealCupan(employeeInformationDto:EmployeeInformationDto []) {
+     
+        return this.http.post('http://localhost:8082/getMealCupan', employeeInformationDto, {responseType: 'blob' });
+    }
+    // for Shift Allownce 
+    getShiftallownce(employeeInformationDto:EmployeeInformationDto []) {
+     
+        return this.http.post('http://localhost:8082/getShiftallownce', employeeInformationDto, {responseType: 'blob' });
+    }
 }

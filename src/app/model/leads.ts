@@ -1,3 +1,4 @@
 export class Leads {
-leadname:string
+empId:number;
+empName:String;
 }

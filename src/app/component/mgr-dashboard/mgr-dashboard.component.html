@@ -6,24 +6,29 @@
 	<div class="col-md-12">
 		<h4>Filter below table data by selecting Lead Name, Year and Month, then click Apply Filter</h4>
 		<form [formGroup]="oppoSuitsForm" (ngSubmit)="onSubmit()" class="">
-			
-			<div class="col-md-8 search_wrap">
+			<div class="alert alert-danger alert-dismissible fade show" *ngIf="filterRequiredError">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+				<strong>Missing input!</strong> All below input fields required for Filter.
+			</div>
+			<div class="col-md-7 search_wrap">
 				<select formControlName="selectedleadName" class="col-md-5 custom-select mb-3">
-					<option selected>Select Lead Name </option>
-					<option *ngFor="let suit of leadName">{{suit}}</option>
+					<!-- <option [ngValue]="null" selected>Select Lead Name </option> -->
+					<option *ngFor="let suit of leadName" [ngValue]="suit.empName" [disabled]="makeDisabled">{{suit.empName}}</option>
 				</select>
 				<select formControlName="year" class="col-md-3 custom-select mb-3">
-					<option selected>Select Year</option>
-					<option *ngFor="let suit of oppoSuits">{{suit}}</option>
+					<option [ngValue]="null" selected>Select Year</option>
+					<option *ngFor="let suit of oppoSuits" [ngValue]="suit">{{suit}}</option>
 				</select>
 				<select formControlName="month" class="col-md-3 custom-select mb-3">
-					<option selected>Select Month</option>
-					<option *ngFor="let suit of month">{{suit}}</option>
+					<option [ngValue]="null" selected>Select Month</option>
+					<option *ngFor="let suit of month" [ngValue]="suit">{{suit}}</option>
 				</select>
 			</div>
-			<div class="col-md-4 search_wrap">
-				<button class="col-md-1x btn btn-dark">Apply Filter</button>
-				<button class="col-md-1x btn btn-secondary" type="submit" (click)='ClearFilter()'>ClearFilter</button>
+			<div class="col-md-5 search_wrap">
+				<button class="col-md-1x btn btn-dark" type="submit" [disabled]="oppoSuitsForm.invalid"><i class="fas fa-filter"></i> | Apply Filter</button>
+				<button class="col-md-1x btn btn-secondary" type="button" (click)='clearFilter()'><i class="fas fa-eraser"></i> | ClearFilter</button>
+				<button class="col-md-1x btn btn-outline-secondary" *ngIf="currentRoldId != 2"
+					type="button" (click)='showAllData()'>Show All</button>
 			</div>
 				
 			
@@ -34,8 +39,8 @@
 <section class="row">
 	<div class="row">
 		<div class="col-md-12">
-			<table id="customers" style="overflow-x:auto;">
-				<thead>
+			<table id="customers" class="table" style="overflow-x:auto;">
+				<thead class="thead-dark">
 					<tr>
 						<th>Role</th>
 						<th>Technology</th>
@@ -48,6 +53,7 @@
 						<th>wfhDates</th>
 						<th>leaveCount</th>
 						<th>leaveDates</th>
+						<th>Total Working Date(22)</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -78,12 +84,13 @@
 								</div>
 							</div>
 						</td>
+						<td>{{employeeInformationDto.workingDayCount}}</td>
 						<td>
-							<div class="tempMarBot">
-								<button class="btn btn-dark" 
-									(click)="addLeaves(employeeInformationDto)">Add</button> 
-								<button class="btn btn-outline-secondary" 
-									(click)="deleteLeave(employeeInformationDto)">Delete</button>
+							<div class="actionBtnWrap">
+								<button class="btn" title="Add Leave(s)"
+									(click)="addLeaves(employeeInformationDto)"><i class="fas fa-plus-circle"></i></button> 
+								<button class="btn" title="Delete Leave(s)"
+									(click)="deleteLeave(employeeInformationDto)"><i class="fas fa-trash"></i></button>
 							</div>
 						</td>
 					</tr>
@@ -129,6 +136,9 @@
 	</ng-template>
 </section>
 
-<br> <br>
-<button class="btn btn-primary btn-round" type="submit" (click)='downloadFile()'>DownloadNewReport</button>
-<br>
+<div class="download_report_btn_sec">
+	<button class="btn btn-primary btn-round" type="button" (click)='downloadTimesheetReport()'><i class="fas fa-clock"></i> | Download Timesheet Report</button>
+	<button class="btn btn-primary btn-round" type="button" (click)='downloadMealCouponReport()'><i class="fas fa-coffee"></i> | Download Meal Coupon Report </button>
+	<button class="btn btn-primary btn-round" type="button" (click)='downloadShiftAllowReport()'><i class="fas fa-business-time"></i> | Download Shift Allowance Report</button>
+	<!-- <button class="btn btn-primary btn-round" type="button" (click)='updateData()'><i class="fas fa-business-time"></i> updateemployee</button> -->
+</div>
