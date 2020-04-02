@@ -43,7 +43,7 @@ export class HolidaysCalendarComponent implements OnInit {
 
   dateFormatter(cdate:any){
     function pad(n) {return n < 10 ? "0"+n : n;}
-    let result = pad(cdate.getMonth()+1)+"/"+pad(cdate.getDate())+"/"+cdate.getFullYear();
+    let result = pad(cdate.getMonth()+1)+"-"+pad(cdate.getDate())+"-"+cdate.getFullYear();
     console.log("selected date is: "+result)
     return result;
   }
@@ -51,10 +51,14 @@ export class HolidaysCalendarComponent implements OnInit {
   onSubmitHoliday(){
     let holidayFormData = {
       holidayName : this.holidayForm.value.holidayName,
-      holidayDate : this.dateFormatter(this.holidayForm.value.holidayDate)
+      holiday_date : this.dateFormatter(this.holidayForm.value.holidayDate)
     }
-    
-    alert("Holiday details going to submit: "+JSON.stringify(holidayFormData));
+    //alert("Holiday details going to submit: "+JSON.stringify(holidayFormData));
+    this.userService.addHoliday(holidayFormData).subscribe(data => {
+      this.holidayForm.reset();
+      console.log("Holidays Added and result is : "+ data);
+      this.getHolidays();
+    });
   }
 
   get isManager() {

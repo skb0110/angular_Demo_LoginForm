@@ -114,4 +114,8 @@ export class UserService {
      
         return this.http.post('http://localhost:8082/getShiftallownce', employeeInformationDto, {responseType: 'blob' });
     }
+
+    addHoliday(holiday:any) {
+        return this.http.post('http://localhost:8082/addHoliday',holiday)
+    }
 }
