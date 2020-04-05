@@ -1,24 +1,24 @@
-<div class="row">
-	<div class="col-md-2"></div>
-	<div class="col-md-8">
+<div class="">
+<div class="mar_Bot row0">
+	<h3 class="page_header">User Profile</h3>
+	<div class="col-md-12">
 		<div class="card card-user">
 			<div class="card-header">
-				<h5 class="card-title">Edit Profile</h5>
+				<h4 class="card-title">Edit your profile</h4>
 			</div>
-
 			<div class="card-body">
-		
 					<div class="row">
 						<div class="col-md-5 pr-1">
 							<div class="form-group">
-								<label>employee_Id</label>
+								<label>Employee Id</label>
 								 <input type="number" class="form-control" disabled
 									 [(ngModel)]="emp.employee_Id" value="{{emp.employee_Id}}">
 							</div>
 						</div>
 						<div class="col-md-3 px-1">
 							<div class="form-group">
-								<label>contact_number</label> <input type="text" class="form-control"
+								<label>Contact Number</label> 
+								<input type="text" class="form-control"
 									placeholder="contact_number" [(ngModel)]="emp.contact_number" value="{{emp.contact_number}}">
 							</div>
 							<!-- [(ngModel)]="emp.contact_number" -->
@@ -26,28 +26,32 @@
 						<div class="col-md-4 pl-1">
 							<div class="form-group">
 								<label for="exampleInputEmail1">Email address</label>
-								<input type="email" class="form-control" placeholder="Email" [(ngModel)]="emp.email" value="{{emp.email}}">
+								<input type="email" class="form-control" placeholder="Email" 
+								disabled [(ngModel)]="emp.email" value="{{emp.email}}">
 							</div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-6 pr-1">
 							<div class="form-group">
-								<label>First Name</label> <input type="text" class="form-control" placeholder="Company"
-								[(ngModel)]="emp.firstName"	value="{{emp.firstName}}">
+								<label>First Name</label> 
+								<input type="text" class="form-control" placeholder="Company"
+								disabled [(ngModel)]="emp.firstName"	value="{{emp.firstName}}">
 							</div>
 						</div>
 						<div class="col-md-6 pl-1">
 							<div class="form-group">
-								<label>Last Name</label> <input type="text" class="form-control" placeholder="Last Name"
-								[(ngModel)]="emp.lastName"	value="{{emp.lastName}}">
+								<label>Last Name</label> 
+								<input type="text" class="form-control" placeholder="Last Name"
+								disabled [(ngModel)]="emp.lastName"	value="{{emp.lastName}}">
 							</div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
-								<label>location</label> <input type="text" class="form-control" placeholder="location"
+								<label>Location</label> 
+								<input type="text" class="form-control" placeholder="location"
 								[(ngModel)]="emp.location"	value="{{emp.location}}">
 							</div>
 						</div>
@@ -55,28 +59,32 @@
 					<div class="row">
 						<div class="col-md-4 pr-1">
 							<div class="form-group">
-								<label>designationRole</label> <input type="text" class="form-control"
-									placeholder="designationRole" [(ngModel)]="emp.designationRole" value="{{emp.designationRole}}">
+								<label>DesignationRole</label> 
+								<input type="text" class="form-control"
+									disabled placeholder="designationRole" [(ngModel)]="emp.designationRole" value="{{emp.designationRole}}">
 							</div>
 						</div>
 						<div class="col-md-4 px-1">
 							<div class="form-group">
-								<label>date_of_join_in_project</label> <input type="date" class="form-control"
-									placeholder="date_of_join_in_project" [(ngModel)]="emp.date_of_join_in_project" value="{{emp.date_of_join_in_project}}">
+								<label>Project Date of Joining</label> 
+								<input type="date" class="form-control"
+								disabled placeholder="date_of_join_in_project" [(ngModel)]="emp.date_of_join_in_project" value="{{emp.date_of_join_in_project}}">
 							</div>
 						</div>
 						<div class="col-md-4 pl-1">
 							<div class="form-group">
-								<label>date_of_release_in_project</label> <input type="date" class="form-control"
-									placeholder="date_of_release_in_project" [(ngModel)]="emp.date_of_release_in_project" value="{{emp.date_of_release_in_project}}">
+								<label>Project Date of Release</label> 
+								<input type="date" class="form-control"
+								disabled placeholder="date_of_release_in_project" [(ngModel)]="emp.date_of_release_in_project" value="{{emp.date_of_release_in_project}}">
 							</div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
-								<label>level</label> <input type="number" class="form-control" placeholder="level"
-								[(ngModel)]="emp.level"	value="{{emp.level}}">
+								<label>Level</label> 
+								<input type="number" class="form-control" placeholder="level"
+								disabled [(ngModel)]="emp.level"	value="{{emp.level}}">
 							</div>
 						</div>
 					</div>
@@ -91,5 +99,5 @@
 		</div>
 	</div>
 
-	<div class="col-md-2"></div>
+	</div>
 </div>

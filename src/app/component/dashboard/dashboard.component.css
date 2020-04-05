@@ -26,3 +26,8 @@ border-collapse: collapse; } */
 	background-color: rgb(110, 119, 111);
 	color: white;
 }
+h3.page_header{
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 25px;
+}
