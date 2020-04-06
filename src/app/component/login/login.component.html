@@ -1,9 +1,14 @@
 <div class="form_wrap col-md-5">
+	<div class="alert alert-danger alert-dismissible fade show" *ngIf="wrongCredential">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    	<strong>Wrong credentials!</strong> Entered Username or Password worng, Please try again.
+  </div>
 	<h2>AMS | Login</h2>
 	<div class="login_form">
 		<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 			<div class="form-group">
-				<label for="username">Username</label> <input type="text"
+				<label for="username">Username</label> 
+				<input type="text"
 					formControlName="username" class="form-control"
 					[ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
 				<div *ngIf="submitted && f.username.errors" class="invalid-feedback">

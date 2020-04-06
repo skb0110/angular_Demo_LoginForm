@@ -18,6 +18,7 @@ export class DialogModalComponent implements OnInit {
   fromDialog:string;
   formData: any;
   empId: number;
+  fullName: string;
   leaveId: number;
 
   constructor(
@@ -27,6 +28,7 @@ export class DialogModalComponent implements OnInit {
   ) { 
     this.fromPage = data.pageValue;
     this.empId= data.pageValue.employee_Id;
+    this.fullName = data.pageValue.firstName +" "+data.pageValue.lastName;
     this.leaveId=data.pageValue.employee_leave_and_wfh_id;
   }
 
