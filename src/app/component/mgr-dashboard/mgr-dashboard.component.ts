@@ -171,7 +171,8 @@ export class MgrDashboardComponent implements OnInit {
 
   showAllData(){
     if(this.currentUser.roles.roleId != 2){
-      this.getAllEmployeeWithLeaveInformation(new Date().getMonth() + 1, new Date().getFullYear());
+      //this.getAllEmployeeWithLeaveInformation(new Date().getMonth() + 1, new Date().getFullYear());
+      this.getAllEmployeeWithLeaveInformation(this.oppoSuitsForm.value.month, this.oppoSuitsForm.value.year);
     }
   }
 
