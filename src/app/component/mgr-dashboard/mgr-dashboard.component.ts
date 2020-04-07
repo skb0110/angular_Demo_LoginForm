@@ -34,7 +34,7 @@ export class MgrDashboardComponent implements OnInit {
   currentUserSubscription: Subscription;
   employeeInformationDtos: EmployeeInformationDto[] = [];
   empDetails: EmployeeInformationDto;
-  oppoSuitsForm: any;
+  oppoSuitsForm: FormGroup;
   workfromehome;
   dialogValue: any;
   sendValue: string;
@@ -80,7 +80,8 @@ export class MgrDashboardComponent implements OnInit {
           console.log(data);
           if(data==null)
           {
-            this.ngOnInit();
+            //this.ngOnInit();
+            this.onSubmit();
           } 
           });
       }
