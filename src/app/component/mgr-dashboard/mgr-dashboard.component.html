@@ -39,6 +39,10 @@
 <section class="row">
 	<div class="row">
 		<div class="col-md-12">
+			<div class="alert alert-danger alert-dismissible fade show" *ngIf="joiningOrReleaseError">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong>Invalid Dates!</strong> Entered leave/wfh dates not between Joining and Release, Please try some other dates.
+			</div>
 			<table id="customers" class="table" style="overflow-x:auto;">
 				<thead class="thead-dark">
 					<tr>

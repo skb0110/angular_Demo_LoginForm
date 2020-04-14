@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS, HttpHeaders } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
-import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
+import { delay, mergeMap, materialize, dematerialize, catchError, map } from 'rxjs/operators';
 import { AuthenticationService } from './authentication.service';
 import { Subscription } from 'rxjs';
 
@@ -103,6 +103,13 @@ export class UserService {
     updateLeave( formData: any)
     {
         return this.http.post('http://localhost:8082/updateLeave',formData)
+            .pipe(
+                map((data: any) => {
+                  return data;
+                }), catchError( error => {
+                  return throwError( 'Something went wrong!' );
+                })
+             )
     }
 //for meal Cupan
     getMealCupan(employeeInformationDto:EmployeeInformationDto []) {

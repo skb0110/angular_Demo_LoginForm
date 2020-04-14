@@ -41,6 +41,7 @@ export class MgrDashboardComponent implements OnInit {
   makeDisabled: boolean = false;
   filterRequiredError: boolean =false;
   currentRoldId: any;
+  joiningOrReleaseError: boolean =false;
 
   constructor(
     
@@ -76,14 +77,15 @@ export class MgrDashboardComponent implements OnInit {
       if (result) {
         console.log('The dialog was closed', result);
         //this.dialogValue = JSON.stringify(result.data);
-        this.userService.updateLeave(result.data).subscribe(data => {          
+        this.userService.updateLeave(result.data).subscribe((data) => {          
           console.log(data);
-          if(data==null)
-          {
-            //this.ngOnInit();
+          if(data.massage == 'success'){
             this.onSubmit();
-          } 
-          });
+            this.joiningOrReleaseError = false
+          } else{
+            this.joiningOrReleaseError = true;
+          }
+        });
       }
     });
   }
