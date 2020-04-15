@@ -41,7 +41,11 @@
 /* .actionBtnWrap button:first-child{
   margin-bottom: 5px;
 } */
-
+h3.page_header{
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 25px;
+}
 
 /* Footer section */
 .footer{
@@ -69,4 +73,7 @@
   border: 1px solid #ccc;
   padding: 20px 30px 20px;
   border-radius: 0px 0px 5px 5px;
+}
+.mar_Bot{
+  margin-bottom: 70px;
 }

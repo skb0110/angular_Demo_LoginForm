@@ -1,29 +1,39 @@
-<p>holidays-calendar works!</p>
+<div class="">
+	<h3 class="page_header">Zensar India Holidays</h3>
+	<h4>Add holidays as per your location based by filling below form with Holiday name and Holiday Date.</h4>
+	<section class="" *ngIf="isManager">
+		<div class="holidayFormWarp">
+			<form [formGroup]="holidayForm" class="form-inline" (ngSubmit)="onSubmitHoliday()">
+				<div class="md-col-3 form-group">
+					<!-- <label for="holidayName">Enter a holiday name:</label> -->
+					<input formControlName="holidayName" type="text" class="form-control"  
+					placeholder="Enter a holiday name" id="holidayName">
+				</div>
+				<div class="md-col-3 form-group">
+					<mat-form-field> 
+						<!-- <label>From Date</label>	 -->
+						<div class="dateWrap">
+							<input matInput [matDatepicker]="pickerFrom" formControlName="holidayDate" placeholder="Select Holiday Date">
+							<mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+							<mat-datepicker #pickerFrom></mat-datepicker>
+						</div>
+					</mat-form-field>
+				</div>
+				<div class="md-col-3">
+					<button type="submit" class="btn btn-dark" [disabled]='holidayForm.invalid'>Add Holiday</button>
+				</div>
+			</form>
+		</div>
+	</section>
+</div>
 
-
-<section class="row" *ngIf="isManager">
-	<div class="col-md-3">
-		<input type="text" [(ngModel)]="holiday.holidayName" >
-	</div>
-	<div class="col-md-3">
-
-		<input type="date" [(ngModel)]="holiday.holiday_date" value="{{holiday.holiday_date}}">
-	</div>
-	<div class="col-md-6">
-		<button type="submit" class="btn btn-primary btn-round" (click)="submit()">add
-			Holidays</button>
-	</div>
-</section>
-<br>
-<section class="col-md-8">
-
+<section class="col-md-12 mar_Bot">
 	<table id="customers">
 		<thead>
 			<tr>
 				<th>Sr.no</th>
 				<th>Holiday Name</th>
 				<th>Date</th>
-
 			</tr>
 		</thead>
 		<tbody>
@@ -32,7 +42,6 @@
 				<td>{{holi.holidayName}}</td>
 				<td>{{holi.holiday_date}}</td>
 			</tr>
-
 		</tbody>
 	</table>
 </section>

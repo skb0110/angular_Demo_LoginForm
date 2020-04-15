@@ -27,3 +27,9 @@
     background-color: rgb(110, 119, 111);
     color: white;
   }
+  .dateWrap .mat-input-element{
+    width: 140px;
+  }
+  .holidayFormWarp .md-col-3{
+    margin-right: 15px;
+  }
