@@ -9,7 +9,7 @@
 			<table id="customers" style="overflow-x:auto;">
 				<thead>
 					<tr>
-						<th>Role</th>
+
 						<th>Technology</th>
 						<th>Level</th>
 						<th>Location</th>
@@ -24,17 +24,15 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td>{{ employeeInformationDto.designationRole }}</td>
-						<td>{{ employeeInformationDto.level }}</td>
+
+						<td>{{ employeeInformationDto.technologyName }}</td>
 						<td>{{ employeeInformationDto.level }}</td>
 						<td>{{ employeeInformationDto.location }}</td>
 						<td>{{ employeeInformationDto.firstName }} {{
 							employeeInformationDto.lastName }}</td>
 						<td>{{ employeeInformationDto.lead }}</td>
 						<td>{{ employeeInformationDto.employee_Id }}</td>
-						<td>{{
-							employeeInformationDto.workingDayCount
-							}}</td>
+						<td>{{employeeInformationDto.wfhCount}}</td>
 						<!-- <td>{{ employeeInformationDto.leavesInformations.wfhDates }}</td> -->
 						<td>
 							<div style="overflow: auto; max-height: 200px;">
