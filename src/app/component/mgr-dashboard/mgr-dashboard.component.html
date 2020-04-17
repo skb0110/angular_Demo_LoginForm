@@ -46,7 +46,6 @@
 			<table id="customers" class="table" style="overflow-x:auto;">
 				<thead class="thead-dark">
 					<tr>
-						<th>Role</th>
 						<th>Technology</th>
 						<th>Level</th>
 						<th>Location</th>
@@ -57,14 +56,13 @@
 						<th>wfhDates</th>
 						<th>leaveCount</th>
 						<th>leaveDates</th>
-						<th>Total Working Date(22)</th>
 						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr *ngFor="let employeeInformationDto of employeeInformationDtos ">
-						<td>{{ employeeInformationDto.designationRole }}</td>
-						<td>{{ employeeInformationDto.level }}</td>
+					
+						<td>{{ employeeInformationDto.technologyName }}</td>
 						<td>{{ employeeInformationDto.level }}</td>
 						<td>{{ employeeInformationDto.location }}</td>
 						<td>{{ employeeInformationDto.firstName }} {{
@@ -88,7 +86,7 @@
 								</div>
 							</div>
 						</td>
-						<td>{{employeeInformationDto.workingDayCount}}</td>
+
 						<td>
 							<div class="actionBtnWrap">
 								<button class="btn" title="Add Leave(s)"
