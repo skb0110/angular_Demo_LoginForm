@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../service/authentication.service';
 import { User } from '../model/user';
@@ -7,6 +7,7 @@ import { UserService } from '../service/user.service';
 import { first } from 'rxjs/operators';
 import { Holidays } from '../model/holidays';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { MatInput } from '@angular/material';
 
 @Component({
   selector: 'app-holidays-calendar',
@@ -19,6 +20,8 @@ export class HolidaysCalendarComponent implements OnInit {
   holiday:Holidays;
   holidayForm: FormGroup;
   
+  @ViewChild('inputDate', { read: MatInput, static: false}) inputDate: MatInput;
+  @ViewChild('inputHoliday', { read: MatInput, static: false}) inputHoliday: MatInput;
  
   constructor(
     private router: Router,
@@ -33,7 +36,7 @@ export class HolidaysCalendarComponent implements OnInit {
     this.holiday=new Holidays;
     this.buildHolidayForm();
   }
-
+  ngAfterViewInit() {  }
   buildHolidayForm(){
     this.holidayForm = this.fb.group({
       holidayName: ['', Validators.required],
@@ -49,17 +52,29 @@ export class HolidaysCalendarComponent implements OnInit {
   }
 
   onSubmitHoliday(){
-    let holidayFormData = {
-      holidayName : this.holidayForm.value.holidayName,
-      holiday_date : this.dateFormatter(this.holidayForm.value.holidayDate)
+    //Reset for needs to Refactor
+    if(this.inputDate.value && this.inputHoliday.value){
+      let holidayFormData = {
+        holidayName : this.holidayForm.value.holidayName,
+        holiday_date : this.dateFormatter(this.holidayForm.value.holidayDate)
+      }
+      //alert("Holiday details going to submit: "+JSON.stringify(holidayFormData));
+      this.userService.addHoliday(holidayFormData).subscribe(data => {
+        this.inputDate.value = '';
+        this.holidayForm.value.holidayName = null;
+        this.inputHoliday.value = '';
+        this.holidayForm.value.holidayDate = {};
+        alert("Holidays Added Successfully");
+        this.getHolidays();
+      });
+
+    } else{
+      alert("Please select 'Holiday Name and Date'");
     }
-    //alert("Holiday details going to submit: "+JSON.stringify(holidayFormData));
-    this.userService.addHoliday(holidayFormData).subscribe(data => {
-      this.holidayForm.reset();
-      console.log("Holidays Added and result is : "+ data);
-      this.getHolidays();
-    });
+    
+    
   }
+
 
   get isManager() {
     return this.currentUser && (this.currentUser.roles.roleNames === Role.Manager || this.currentUser.roles.roleNames === Role.Lead);
