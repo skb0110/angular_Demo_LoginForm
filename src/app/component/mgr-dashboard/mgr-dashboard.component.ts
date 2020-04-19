@@ -66,7 +66,6 @@ export class MgrDashboardComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log("Result of Add Leaes: ::: "+result.data);
       if (result) {
         console.log('The dialog was closed', result);
         //this.dialogValue = JSON.stringify(result.data);
@@ -74,7 +73,8 @@ export class MgrDashboardComponent implements OnInit {
           console.log(data);
           if(data.massage == 'success'){
             this.onSubmit();
-            this.joiningOrReleaseError = false
+            this.joiningOrReleaseError = false;
+            alert("Leave/WFH successfully added.")
           } else{
             this.joiningOrReleaseError = true;
           }
@@ -99,7 +99,7 @@ export class MgrDashboardComponent implements OnInit {
           console.log(w);
           if(w==null)
           {
-            this.ngOnInit();
+            this.onSubmit();
           } 
           });
         //this.dialogValue = JSON.stringify(result.data);
