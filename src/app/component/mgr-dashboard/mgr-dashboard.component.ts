@@ -15,9 +15,6 @@ import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { DialogModalComponent } from '../dialog-modal/dialog-modal.component';
 import { DialogDeleteComponent } from '../dialog-delete/dialog-delete.component';
-export let browserRefresh = false;
-declare var jquery: any;
-declare var $: any;
 
 @Component({
   selector: 'app-mgr-dashboard',
@@ -44,21 +41,17 @@ export class MgrDashboardComponent implements OnInit {
   joiningOrReleaseError: boolean =false;
 
   constructor(
-    
-    public fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    //private modalService: NgbModal,
     private authenticationService: AuthenticationService,
     private userService: UserService,
-    //   private jwt:JwtInterceptor
+    private fb: FormBuilder,
+    //private jwt:JwtInterceptor
     public dialog: MatDialog
   ) {
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
       this.currentUser = user;
-
       console.log(this.currentUser);
-      //this.getLeadNames();
     })
   }
 
@@ -73,7 +66,6 @@ export class MgrDashboardComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log("Result of Add Leaes: ::: "+result.data);
       if (result) {
         console.log('The dialog was closed', result);
         //this.dialogValue = JSON.stringify(result.data);
@@ -81,7 +73,8 @@ export class MgrDashboardComponent implements OnInit {
           console.log(data);
           if(data.massage == 'success'){
             this.onSubmit();
-            this.joiningOrReleaseError = false
+            this.joiningOrReleaseError = false;
+            alert("Leave/WFH successfully added.")
           } else{
             this.joiningOrReleaseError = true;
           }
@@ -106,7 +99,7 @@ export class MgrDashboardComponent implements OnInit {
           console.log(w);
           if(w==null)
           {
-            this.ngOnInit();
+            this.onSubmit();
           } 
           });
         //this.dialogValue = JSON.stringify(result.data);

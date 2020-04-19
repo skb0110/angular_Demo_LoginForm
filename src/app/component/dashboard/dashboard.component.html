@@ -1,8 +1,8 @@
 <div>
 	<h3 class="page_header">Welcome {{ employeeInformationDto.firstName }} {{
 		employeeInformationDto.lastName }}</h3>
-	<h4>Your employment related inforation is mention below along with the monthly Leave and Work From Home status.</h4>
-	<section class="row">
+	<h4>Your employment related information is mention below along with the monthly Leave and Work From Home status.</h4>
+	<section class="">
 	<div class="row">
 		<div class="col-md-12">
 			
@@ -35,14 +35,14 @@
 						<td>{{employeeInformationDto.wfhCount}}</td>
 						<!-- <td>{{ employeeInformationDto.leavesInformations.wfhDates }}</td> -->
 						<td>
-							<div style="overflow: auto; max-height: 200px;">
-								<div *ngFor="let da of employeeInformationDto.wfhDates">
-									{{da}}
+							<div>
+								<div *ngFor="let wfh of employeeInformationDto.wfhDates">
+									{{wfh}}
 								</div>
 							</div>
 						</td>
 						<!-- <td>{{  employeeInformationDto.leavesInformations.leaveDates }}</td> -->
-						<td><div style="overflow: auto; max-height: 200px;">
+						<td><div>
 								<div *ngFor="let leave of employeeInformationDto.leaveDates">
 									{{leave}}
 								</div>

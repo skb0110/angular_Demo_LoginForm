@@ -1,9 +1,9 @@
 
 export class EmployeeInformationDto {     
-       employee_Id:number;
-        firstName:string
-      middleName:string;
-      lastName:string;
+		employee_Id:number;
+		firstName:string
+		middleName:string;
+		lastName:string;
 	  gender:string;
 	  date_of_join_in_project:string;
 	  date_of_release_in_project:string;
@@ -22,5 +22,6 @@ export class EmployeeInformationDto {
 	  leaveCount;
 	  wfhDates:String [];
 	  wfhCount:number;
-	  workingDayCount:number;
+		workingDayCount:number;
+		technologyName: string;
 }
