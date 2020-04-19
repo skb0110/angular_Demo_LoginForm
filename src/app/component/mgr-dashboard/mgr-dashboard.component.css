@@ -51,7 +51,7 @@ h3.page_header{
 .download_report_btn_sec{
   margin-top: 20px;
   text-align: right;
-  padding-bottom: 65px;
+  padding: 0 15px 65px;
 }
 .download_report_btn_sec button{
   margin: 10px 0 15px 30px;

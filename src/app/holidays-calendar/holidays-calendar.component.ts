@@ -19,6 +19,7 @@ export class HolidaysCalendarComponent implements OnInit {
   holidays: Holidays[] = [];
   holiday:Holidays;
   holidayForm: FormGroup;
+  holidayList: any;
   
   @ViewChild('inputDate', { read: MatInput, static: false}) inputDate: MatInput;
   @ViewChild('inputHoliday', { read: MatInput, static: false}) inputHoliday: MatInput;
@@ -36,7 +37,9 @@ export class HolidaysCalendarComponent implements OnInit {
     this.holiday=new Holidays;
     this.buildHolidayForm();
   }
+
   ngAfterViewInit() {  }
+
   buildHolidayForm(){
     this.holidayForm = this.fb.group({
       holidayName: ['', Validators.required],
@@ -51,23 +54,45 @@ export class HolidaysCalendarComponent implements OnInit {
     return result;
   }
 
+  dateFormatter2(cdate:any){
+    function pad(n) {return n < 10 ? "0"+n : n;}
+    let result = cdate.getFullYear()+"-"+pad(cdate.getMonth()+1)+"-"+pad(cdate.getDate());
+    console.log("selected date is: "+result)
+    return result;
+  }
+
   onSubmitHoliday(){
     //Reset for needs to Refactor
     if(this.inputDate.value && this.inputHoliday.value){
-      let holidayFormData = {
-        holidayName : this.holidayForm.value.holidayName,
-        holiday_date : this.dateFormatter(this.holidayForm.value.holidayDate)
-      }
-      //alert("Holiday details going to submit: "+JSON.stringify(holidayFormData));
-      this.userService.addHoliday(holidayFormData).subscribe(data => {
-        this.inputDate.value = '';
-        this.holidayForm.value.holidayName = null;
-        this.inputHoliday.value = '';
-        this.holidayForm.value.holidayDate = {};
-        alert("Holidays Added Successfully");
-        this.getHolidays();
+      let isHolidayExist = false;
+      let holidayList = this.holidayList;
+      let dateToBeAdd = this.dateFormatter2(this.inputDate.value);
+      
+      holidayList.forEach(function (arrayItem) {
+        var x = arrayItem.holiday_date
+        if(x === dateToBeAdd){
+          alert(dateToBeAdd +" date is already added in holiday. Kindly check.")
+          isHolidayExist = true;
+          return false;
+        }
+        console.log(x);
       });
-
+      
+      if(!isHolidayExist){
+        let holidayFormData = {
+          holidayName : this.holidayForm.value.holidayName,
+          holiday_date : this.dateFormatter(this.holidayForm.value.holidayDate)
+        }
+        //alert("Holiday details going to submit: "+JSON.stringify(holidayFormData));
+        this.userService.addHoliday(holidayFormData).subscribe(data => {
+          this.inputDate.value = '';
+          this.holidayForm.value.holidayName = null;
+          this.inputHoliday.value = '';
+          this.holidayForm.value.holidayDate = {};
+          alert("Holidays Added Successfully");
+          this.getHolidays();
+        });
+      }
     } else{
       alert("Please select 'Holiday Name and Date'");
     }
@@ -84,8 +109,8 @@ export class HolidaysCalendarComponent implements OnInit {
 
   private getHolidays() {
     this.userService.getHolidays().pipe(first()).subscribe(holi => {
-
       this.holidays = holi;
+      this.holidayList = holi;
       console.log(this.holidays);
     })
   }
