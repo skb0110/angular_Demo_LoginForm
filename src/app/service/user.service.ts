@@ -125,4 +125,14 @@ export class UserService {
     addHoliday(holiday:any) {
         return this.http.post('http://localhost:8082/addHoliday',holiday)
     }
+
+    checkPassword(user:any)
+    {
+        return this.http.post('http://localhost:8082/employee/checkpassword',user)
+    }
+
+    updatePassword(user:any)
+    {
+        return this.http.post('http://localhost:8082/employee/changepassword',user)
+    }
 }

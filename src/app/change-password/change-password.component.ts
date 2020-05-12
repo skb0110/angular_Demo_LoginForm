@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MustMatch } from '../helpers/must-match.validator';
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-change-password',
@@ -11,7 +12,9 @@ export class ChangePasswordComponent implements OnInit {
   changePwdForm: FormGroup;
   submitted: boolean = false;
 
-  constructor(private fb:FormBuilder) { }
+  constructor(private fb:FormBuilder,
+    private userService: UserService
+    ) { }
 
   ngOnInit() {
     // do a rest call to fetch existing password and set it to UI form
@@ -37,6 +40,18 @@ export class ChangePasswordComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
+
+
+    // this.userService.checkPassword(this.changePwdForm).subscribe((data) => {          
+    //   console.log(data);
+    //   if(data == 'true'){
+
+    //     alert("Leave/WFH successfully added.")
+    //   } else{
+    //     return;
+    //   }
+    // });
+
 
     // stop here if form is invalid
     if (this.changePwdForm.invalid) {
