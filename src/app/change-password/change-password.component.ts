@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MustMatch } from '../helpers/must-match.validator';
 import { UserService } from '../service/user.service';
+import { User } from '../model/user';
+import { Subscription } from 'rxjs';
+import { AuthenticationService } from '../service/authentication.service';
 
 @Component({
   selector: 'app-change-password',
@@ -11,10 +14,19 @@ import { UserService } from '../service/user.service';
 export class ChangePasswordComponent implements OnInit {
   changePwdForm: FormGroup;
   submitted: boolean = false;
+  currentUserSubscription: Subscription;
+  currentUser: User;
 
   constructor(private fb:FormBuilder,
-    private userService: UserService
-    ) { }
+    private userService: UserService,
+    private authenticationService:AuthenticationService
+
+    ) {
+      this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
+        this.currentUser = user;
+        console.log(this.currentUser);
+      })
+    }
 
   ngOnInit() {
     // do a rest call to fetch existing password and set it to UI form
@@ -38,19 +50,37 @@ export class ChangePasswordComponent implements OnInit {
 
   get f() { return this.changePwdForm.controls; }
 
+//  private String username;
+//	private String password;
   onSubmit() {
     this.submitted = true;
 
+    let formData={
+      username:this.currentUser.username,
+      password:this.changePwdForm.value.existingPwd
+    }
+    let formDataUpdatedPwd={
+      username:this.currentUser.username,
+      password:this.changePwdForm.value.newPassword
+    }
+    this.userService.checkPassword(formData).subscribe((data) => {  
 
-    // this.userService.checkPassword(this.changePwdForm).subscribe((data) => {          
-    //   console.log(data);
-    //   if(data == 'true'){
+      console.log(data);
+      if(data == true){
 
-    //     alert("Leave/WFH successfully added.")
-    //   } else{
-    //     return;
-    //   }
-    // });
+        this.userService.updatePassword(formDataUpdatedPwd).subscribe((res) => {
+          alert("your password successfully please try to login new password");
+          //log out method call
+
+          console.log("sucess"+res);
+        });
+
+      } else{
+        //alert 
+        
+        return;
+      }
+    });
 
 
     // stop here if form is invalid
@@ -59,7 +89,7 @@ export class ChangePasswordComponent implements OnInit {
     }
 
     // display form values on success
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.changePwdForm.value, null, 4));
+ //   alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.changePwdForm.value, null, 4));
   }
 
   onReset() {
