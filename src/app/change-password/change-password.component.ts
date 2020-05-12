@@ -5,6 +5,7 @@ import { UserService } from '../service/user.service';
 import { User } from '../model/user';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from '../service/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-change-password',
@@ -19,8 +20,8 @@ export class ChangePasswordComponent implements OnInit {
 
   constructor(private fb:FormBuilder,
     private userService: UserService,
-    private authenticationService:AuthenticationService
-
+    private authenticationService:AuthenticationService,
+    private router: Router,
     ) {
       this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
         this.currentUser = user;
@@ -69,15 +70,17 @@ export class ChangePasswordComponent implements OnInit {
       if(data == true){
 
         this.userService.updatePassword(formDataUpdatedPwd).subscribe((res) => {
-          alert("your password successfully please try to login new password");
+          alert("Your password changed successfully please try to login with new password");
           //log out method call
-
+          this.authenticationService.logout();
+          this.router.navigate(['/login']);
           console.log("sucess"+res);
         });
 
       } else{
         //alert 
-        
+        alert('Wrong existing password please insert correct password')
+
         return;
       }
     });
