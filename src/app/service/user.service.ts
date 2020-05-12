@@ -125,4 +125,10 @@ export class UserService {
     addHoliday(holiday:any) {
         return this.http.post('http://localhost:8082/addHoliday',holiday)
     }
+
+    getAllRoles()
+    {
+        return this.http.get<any []>('http://localhost:8082/allroles');
+    
+}
 }
