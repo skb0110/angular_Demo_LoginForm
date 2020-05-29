@@ -28,6 +28,7 @@ import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dia
 import { DialogModalComponent } from './component/dialog-modal/dialog-modal.component';
 import { DialogDeleteComponent } from './component/dialog-delete/dialog-delete.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { IronHttpInterceptor } from './helpers/iron-http-interceptor';
 //import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
  
 @NgModule({
@@ -67,7 +68,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
+    { provide: HTTP_INTERCEPTORS, useClass: IronHttpInterceptor, multi: true }
 
     // provider used to create fake backend
     // fakeBackendProvider
