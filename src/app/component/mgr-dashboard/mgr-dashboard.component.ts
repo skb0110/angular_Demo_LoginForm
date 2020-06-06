@@ -142,7 +142,7 @@ export class MgrDashboardComponent implements OnInit {
       selectedleadName: ['', Validators.required]
     })
     //console.log("Selected name is: "+this.oppoSuitsForm.selectedleadName +"selected id: "+this.oppoSuitsForm.selectedleadName.id)
-    this.oppoSuitsForm.controls['selectedleadName'].setValue(this.leadName[this._setLeadName()].empName);
+    this.oppoSuitsForm.controls['selectedleadName'].setValue(this.leadName[this._setLeadName()].empId);
     this.oppoSuitsForm.controls['year'].setValue(this.oppoSuits[this._setYear()]);
     this.oppoSuitsForm.controls['month'].setValue(this.month[this._setMonth()]);
     //this.oppoSuitsForm.patchValue({selectedleadName: this.currentUser.username});
