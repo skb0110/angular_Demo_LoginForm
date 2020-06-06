@@ -13,7 +13,7 @@
 			<div class="col-md-7 search_wrap">
 				<select formControlName="selectedleadName" class="col-md-5 custom-select mb-3">
 					<!-- <option [ngValue]="null" selected>Select Lead Name </option> -->
-					<option *ngFor="let suit of leadName" [ngValue]="suit.empName" [disabled]="makeDisabled">{{suit.empName}}</option>
+					<option *ngFor="let suit of leadName" [ngValue]="suit.empId" [disabled]="makeDisabled">{{suit.empName}}</option>
 				</select>
 				<select formControlName="year" class="col-md-3 custom-select mb-3">
 					<option [ngValue]="null" selected>Select Year</option>
