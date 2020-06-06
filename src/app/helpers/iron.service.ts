@@ -5,11 +5,11 @@ import { IronStatus } from './iron-status';
 import { IIronIdentityProvider} from './i-iron-identity-provider';
 import { IronPolicyFactory } from './iron-policy-factory';
 
-declare module '@ironcorelabs/ironweb' {
-    let codec: Codec;
-    let document: Document;
-    let group: Group;
-}
+// declare module '@ironcorelabs/ironweb' {
+//     let codec: Codec;
+//     let document: Document;
+//     let group: Group;
+// }
 
 /**
  * EncryptedDocument maps the IronWeb encryption response to make it easier to
