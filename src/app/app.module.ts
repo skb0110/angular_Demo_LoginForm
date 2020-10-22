@@ -28,6 +28,7 @@ import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dia
 import { DialogModalComponent } from './component/dialog-modal/dialog-modal.component';
 import { DialogDeleteComponent } from './component/dialog-delete/dialog-delete.component';
 import { AddEmployeeComponent } from './component/add-employee/add-employee.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 //import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
  
 @NgModule({
@@ -41,7 +42,8 @@ import { AddEmployeeComponent } from './component/add-employee/add-employee.comp
     HolidaysCalendarComponent,
     DialogModalComponent,
     DialogDeleteComponent,
-    AddEmployeeComponent
+    AddEmployeeComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

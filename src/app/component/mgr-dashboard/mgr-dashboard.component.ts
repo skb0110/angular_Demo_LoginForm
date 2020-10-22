@@ -25,6 +25,7 @@ export class MgrDashboardComponent implements OnInit {
 
   oppoSuits: any = ['2020', '2019', '2018', '2017'];
   month: any = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+  monthNames:any = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   dates: Date[];
   leadName:Leads[]=[];
   currentUser: User;
@@ -141,7 +142,7 @@ export class MgrDashboardComponent implements OnInit {
       selectedleadName: ['', Validators.required]
     })
     //console.log("Selected name is: "+this.oppoSuitsForm.selectedleadName +"selected id: "+this.oppoSuitsForm.selectedleadName.id)
-    this.oppoSuitsForm.controls['selectedleadName'].setValue(this.leadName[this._setLeadName()].empName);
+    this.oppoSuitsForm.controls['selectedleadName'].setValue(this.leadName[this._setLeadName()].empId);
     this.oppoSuitsForm.controls['year'].setValue(this.oppoSuits[this._setYear()]);
     this.oppoSuitsForm.controls['month'].setValue(this.month[this._setMonth()]);
     //this.oppoSuitsForm.patchValue({selectedleadName: this.currentUser.username});
@@ -226,9 +227,14 @@ export class MgrDashboardComponent implements OnInit {
 //    downloadFile1() {
       downloadTimesheetReport(){
     this.userService.download(this.employeeInformationDtos).subscribe(data => {
+      let monthnuber=this.employeeInformationDtos[0].month;
+      let year=this.employeeInformationDtos[0].year;
+      console.log('In report month'+monthnuber)
+      console.log(year)
+
       console.log(data);
       const blob = new Blob([data], { type: 'application/vnd.ms.excel' });
-      const file = new File([blob], 'IcannExcelReport' + '.xlsx', { type: 'application/vnd.ms.excel' });
+      const file = new File([blob], 'ICANN_Timesheet_'+this.monthNames[monthnuber-1]+'_'+year+'_Attendance_TeamData' + '.xlsx', { type: 'application/vnd.ms.excel' });
       saveAs(file);
     });
   }
@@ -237,9 +243,13 @@ export class MgrDashboardComponent implements OnInit {
   downloadMealCouponReport(){
 
     this.userService.getMealCupan(this.employeeInformationDtos).subscribe(data => {
+      let monthnuber=this.employeeInformationDtos[0].month;
+      let year=this.employeeInformationDtos[0].year;
+      console.log('In report month'+monthnuber)
+
       console.log(data);
       const blob = new Blob([data], { type: 'application/vnd.ms.excel' });
-      const file = new File([blob], 'IcannExcelReportMealCupan' + '.xlsx', { type: 'application/vnd.ms.excel' });
+      const file = new File([blob], 'ICANN_Meal_Coupon_'+this.monthNames[monthnuber-1]+'_'+year+ '.xlsx', { type: 'application/vnd.ms.excel' });
       saveAs(file);
     });
   }
@@ -247,9 +257,14 @@ export class MgrDashboardComponent implements OnInit {
 
   downloadShiftAllowReport(){ 
     this.userService.getShiftallownce(this.employeeInformationDtos).subscribe(data => {
+      let monthnuber=this.employeeInformationDtos[0].month;
+      let year=this.employeeInformationDtos[0].year;
+      console.log('In report month'+monthnuber)
+      console.log(year)
+
       console.log(data);
       const blob = new Blob([data], { type: 'application/vnd.ms.excel' });
-      const file = new File([blob], 'IcannExcelReportShiftAllow' + '.xlsx', { type: 'application/vnd.ms.excel' });
+      const file = new File([blob], 'ICANN_Allowance_Payment_'+this.monthNames[monthnuber-1]+'_'+year+'.xls', { type: 'application/vnd.ms.excel' });
       saveAs(file);
     });
   }
@@ -265,9 +280,12 @@ export class MgrDashboardComponent implements OnInit {
 //  downloadTimesheetReport(){
     this.userService.download1(this.employeeInformationDtos).subscribe(data => {
       console.log(data);
+      let monthnuber=this.employeeInformationDtos[0].month;
+      let year=this.employeeInformationDtos[0].year;
+      console.log('In report month'+monthnuber)
       //var a= document.createElement("a");
       const blob = new Blob([data], { type: 'application/vnd.ms.excel' });
-      const file = new File([blob], 'IcannExcelReport' + '.xlsx', { type: 'application/vnd.ms.excel' });
+      const file = new File([blob], 'ICANN_Timesheet_'+this.monthNames[monthnuber-1]+'_'+year+'_Attendance_TeamData' + '.xlsx', { type: 'application/vnd.ms.excel' });
      //a.href=URL.createObjectURL(file);
    //  a.download="IcannExcelReport";
     // a.click();
