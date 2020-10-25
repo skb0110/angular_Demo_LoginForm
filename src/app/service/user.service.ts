@@ -135,4 +135,10 @@ export class UserService {
     {
         return this.http.post(this.baseApiUrl+'/employee/changepassword',user)
     }
+
+    getAllRoles()
+    {
+        return this.http.get<any []>('http://localhost:8082/allroles');
+    
+}
 }
