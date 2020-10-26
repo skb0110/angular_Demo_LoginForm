@@ -56,6 +56,11 @@ export class ChangePasswordComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
+    // stop here if form is invalid
+    if (this.changePwdForm.invalid) {
+      return false;
+    }
+
     let formData={
       username:this.currentUser.username,
       password:this.changePwdForm.value.existingPwd
@@ -86,10 +91,7 @@ export class ChangePasswordComponent implements OnInit {
     });
 
 
-    // stop here if form is invalid
-    if (this.changePwdForm.invalid) {
-        return;
-    }
+    
 
     // display form values on success
  //   alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.changePwdForm.value, null, 4));
