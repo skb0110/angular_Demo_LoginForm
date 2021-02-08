@@ -4,7 +4,7 @@
 	currentUser.username }}</h3>
 <section class="row">
 	<div class="col-md-12">
-		<h4>Filter below table data by selecting Lead Name, Year and Month, then click Apply Filter</h4>
+		<h4>Number of employee under your team is <strong>{{totalNoEmplyee}}</strong>. Filter below table data by selecting Lead Name, Year and Month, then click Apply Filter</h4>
 		<form [formGroup]="oppoSuitsForm" (ngSubmit)="onSubmit()" class="">
 			<div class="alert alert-danger alert-dismissible fade show" *ngIf="filterRequiredError">
 				<button type="button" class="close" data-dismiss="alert">&times;</button>

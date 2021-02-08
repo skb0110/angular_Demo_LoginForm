@@ -23,7 +23,7 @@ import { DialogDeleteComponent } from '../dialog-delete/dialog-delete.component'
 })
 export class MgrDashboardComponent implements OnInit {
 
-  oppoSuits: any = ['2020', '2019', '2018', '2017'];
+  oppoSuits: any = this.getYearList();//['2021','2020', '2019', '2018', '2017']; 
   month: any = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
   monthNames:any = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   dates: Date[];
@@ -40,6 +40,7 @@ export class MgrDashboardComponent implements OnInit {
   filterRequiredError: boolean =false;
   currentRoldId: any;
   joiningOrReleaseError: boolean =false;
+  totalNoEmplyee: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -54,6 +55,16 @@ export class MgrDashboardComponent implements OnInit {
       this.currentUser = user;
       console.log(this.currentUser);
     })
+  }
+
+  getYearList() {
+    let yearList = [];
+    let currentYear= new Date().getFullYear();
+    for(let i = 0; i < 5; i++){
+      yearList.push(currentYear - i);
+    }
+    console.log(yearList);
+    return yearList;
   }
 
   addLeaves(employeeInformationDto): void {
@@ -202,6 +213,7 @@ export class MgrDashboardComponent implements OnInit {
   private getAllEmployeeWithLeaveInformation(month: number, year: number) {
     this.userService.getAllEmployeeWithLeaveInformation(month, year).pipe(first()).subscribe(Emp => {
       this.employeeInformationDtos = Emp;
+      this.totalNoEmplyee = Emp.length !== 0 ? Emp.length : 0;
       console.log(this.employeeInformationDtos);
     })
   }
@@ -209,6 +221,7 @@ export class MgrDashboardComponent implements OnInit {
   private getAllEmployeeWithLeaveInformationbylead(lead: string, month: number, year: number) {
     this.userService.getAllEmployeeWithLeaveInformationByLead(lead, month, year).pipe(first()).subscribe(Emp => {
       this.employeeInformationDtos = Emp;
+      this.totalNoEmplyee = Emp.length !== 0 ? Emp.length : 0;
       console.log(this.employeeInformationDtos);
     })
   }
