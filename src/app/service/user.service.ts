@@ -20,22 +20,22 @@ export class UserService {
     currentUser: User;
     currentUserSubscription: Subscription;
     public baseApiUrl = environment.base_api_url;
-  
+
     constructor(private http: HttpClient ,
         private authenticationService: AuthenticationService,  )
      {
 
         this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
             this.currentUser = user;
-          
+
          });
          console.log(this.currentUser)
       }
 
-   
+
 
     getLeadNames() {
-        
+
         return this.http.get<Leads[]>(this.baseApiUrl+`/employee/getleadNames`);
         console.log("names")
     }
@@ -52,7 +52,7 @@ export class UserService {
     {
         return this.http.get<EmployeeInformationDto>(this.baseApiUrl+`/employee/getEmployeeWithLeaveInformation/${eId}/${month}/${year}`);
     }
-    
+
     getemployeeInformation(eId:number){
         return this.http.get<EmployeeInformationDto>(this.baseApiUrl+`/employee/getEmployee/${eId}`);
     }
@@ -68,26 +68,26 @@ export class UserService {
     }
 
     download(employeeInformationDto:EmployeeInformationDto []) {
-     
+
         return this.http.post(this.baseApiUrl+'/download', employeeInformationDto, {responseType: 'blob' });
     }
     download1(employeeInformationDto:EmployeeInformationDto []) {
-     
+
         return this.http.post(this.baseApiUrl+'/download1', employeeInformationDto, {responseType: 'blob' });
     }
 
-    updateAllEmployee(employeeInformationDto:EmployeeInformationDto []) {     
-   
+    updateAllEmployee(employeeInformationDto:EmployeeInformationDto []) {
+
         return this.http.post(this.baseApiUrl+'/employee/updateAllEmployee', employeeInformationDto);
     }
-    
-    updateEmployee(employeeInformationDto:EmployeeInformationDto) {     
-   
+
+    updateEmployee(employeeInformationDto:EmployeeInformationDto) {
+
         return this.http.post(this.baseApiUrl+'/employee/updateEmployee', employeeInformationDto);
     }
 
-    deleteLeave(employeeInformationDto:EmployeeInformationDto) {     
-   
+    deleteLeave(employeeInformationDto:EmployeeInformationDto) {
+
         return this.http.post(this.baseApiUrl+'/delete', employeeInformationDto);
     }
     addemployee(employeeInformationDto:EmployeeInformationDto)
@@ -113,12 +113,12 @@ export class UserService {
     }
 //for meal Cupan
     getMealCupan(employeeInformationDto:EmployeeInformationDto []) {
-     
+
         return this.http.post(this.baseApiUrl+'/getMealCupan', employeeInformationDto, {responseType: 'blob' });
     }
-    // for Shift Allownce 
+    // for Shift Allownce
     getShiftallownce(employeeInformationDto:EmployeeInformationDto []) {
-     
+
         return this.http.post(this.baseApiUrl+'/getShiftallownce', employeeInformationDto, {responseType: 'blob' });
     }
 
@@ -135,4 +135,10 @@ export class UserService {
     {
         return this.http.post(this.baseApiUrl+'/employee/changepassword',user)
     }
+
+    getAllRoles()
+    {
+        return this.http.get<any []>('http://localhost:8082/allroles');
+
+}
 }
